@@ -1,5 +1,6 @@
 ﻿@{
     Layout = null;
+    var class1 = new WMCC.Class1();
 }
 
 <!DOCTYPE html>
@@ -11,7 +12,27 @@
 </head>
 <body>
     <div>
-    
+        <h3>WMCC^EREFRESH|GetServerVersion&lt;Client Quit&gt;</h3>
+        <ul>
+            <li>@class1.version</li>
+            <li>@class1.build</li>
+            <li>@class1.tvDirectory</li>
+            <li>@class1.macAddress</li>
+        </ul>
+        <h3>WMCC^EREFRESH|GetChannels&lt;Client Quit&gt;</h3>
+        <ul>
+            @foreach (var channel in class1.channels)
+            {
+                if (channel != class1.channels[0])
+                {
+                    <li>&nbsp;</li>
+                }
+                <li>@channel.id</li>
+                <li>@channel.fullChannel</li>
+                <li>@channel.description</li>
+                <li><a href="@channel.url">@channel.url</a></li>
+            }
+        </ul>
     </div>
 </body>
 </html>
