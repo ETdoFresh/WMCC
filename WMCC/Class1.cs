@@ -11,6 +11,7 @@ namespace WMCC
         public string tvDirectory = "";
         public string macAddress = "";
         public Channel[] channels;
+        public Show[] shows;
 
         public Class1()
         {
@@ -41,6 +42,21 @@ namespace WMCC
                 channels = new Channel[lines.Length];
                 for (int i = 0; i < lines.Length; i++)
                     channels[i] = new Channel(lines[i]);
+
+                socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.Connect(loginIP, port);
+                var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                var tomorrow = DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds();
+                var command = $"WMCC^@EREFRESH@|GetEntries|30450|{now}|{tomorrow}<Client Quit>";
+                socket.Send(System.Text.Encoding.ASCII.GetBytes(command));
+                buffer = new byte[1024 * 64];
+                socket.Receive(buffer);
+                output = System.Text.Encoding.ASCII.GetString(buffer);
+                output = output.Substring(0, output.IndexOf("<EOF>"));
+                lines = output.Split(new[] { "<EOL>" }, StringSplitOptions.RemoveEmptyEntries);
+                shows = new Show[lines.Length];
+                for (int i = 0; i < lines.Length; i++)
+                    shows[i] = new Show(lines[i]);
             }
         }
     }
