@@ -94,6 +94,7 @@
     <Content Include="js\AppEngine\GameComponent.js" />
     <Content Include="js\AppEngine\GameObject.js" />
     <Content Include="js\AppEngine\ImageComponent.js" />
+    <Content Include="js\Prefabs\BlackBackground.js" />
     <Content Include="js\Prefabs\BlueBackground.js" />
     <Content Include="js\Scenes\LogoScene.js" />
     <Content Include="js\AppEngine\TransformComponent.js" />

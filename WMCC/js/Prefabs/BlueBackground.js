@@ -1,4 +1,4 @@
-﻿var BlueBackground = function (parent)
+﻿var BlueBackground = function ()
 {
     var instance = new GameObject();
     instance.Base = GameObject;
