@@ -6,6 +6,7 @@ var LogoScene = function()
 
     instance.AddChild(new BlackBackground());
     instance.AddChild(new BlueBackground());
+    instance.AddChild(new CornerTime());
 
     return instance;
 };

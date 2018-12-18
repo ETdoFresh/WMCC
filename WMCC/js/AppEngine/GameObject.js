@@ -38,6 +38,7 @@ var GameObject = function(name)
     instance.BringToFront = GameObject.BringToFront;
 
     instance.ScheduleDestroy = false;
+    instance.Transform = instance.AddComponent(new TransformComponent(instance));
 
     return instance;
 };
@@ -189,9 +190,6 @@ GameObject.Initialize = function()
     if (!this.Initialized)
     {
         this.Initialized = true;
-
-        this.Transform = new TransformComponent(this);
-        this.AddComponent(this.Transform);
 
         var i;
         for (i = 0; i < this.Components.length; i++)

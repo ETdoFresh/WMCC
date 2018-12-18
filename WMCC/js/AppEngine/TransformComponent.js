@@ -11,8 +11,7 @@ var TransformComponent = function(gameObject, x, y, rotation, scaleX, scaleY)
     instance.Rotation = rotation ? rotation : 0;
     instance.ScaleX = scaleX ? scaleX : 1;
     instance.ScaleY = scaleY ? scaleY : 1;
-
-    instance.Test = TransformComponent.Test;
+    
     instance.GetContentX = TransformComponent.GetContentX;
     instance.GetContentY = TransformComponent.GetContentY;
     instance.GetContentRotation = TransformComponent.GetContentRotation;
@@ -20,12 +19,6 @@ var TransformComponent = function(gameObject, x, y, rotation, scaleX, scaleY)
     instance.GetContentScaleY = TransformComponent.GetContentScaleY;
 
     return instance;
-};
-
-TransformComponent.Test = function()
-{
-    console.log("Special Test!");
-    this.Base.Test.call(this);
 };
 
 TransformComponent.GetContentX = function()
