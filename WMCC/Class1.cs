@@ -6,6 +6,10 @@ namespace WMCC
 {
     public class Class1
     {
+        public string getServerVersionCommand = "";
+        public string getChannelsCommand = "";
+        public string getEntriesCommand = "";
+
         public string version = "";
         public string build = "";
         public string tvDirectory = "";
@@ -21,7 +25,8 @@ namespace WMCC
             socket.Connect(loginIP, port);
             if (socket.Connected)
             {
-                socket.Send(System.Text.Encoding.ASCII.GetBytes("WMCC^EREFRESH|GetServerVersion<Client Quit>"));
+                getServerVersionCommand = "WMCC^EREFRESH|GetServerVersion<Client Quit>";
+                socket.Send(System.Text.Encoding.ASCII.GetBytes(getServerVersionCommand));
                 byte[] buffer = new byte[1024];
                 socket.Receive(buffer);
                 var output = System.Text.Encoding.ASCII.GetString(buffer);
@@ -33,7 +38,8 @@ namespace WMCC
 
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 socket.Connect(loginIP, port);
-                socket.Send(System.Text.Encoding.ASCII.GetBytes("Plex^@EREFRESH@|GetChannels<Client Quit>"));
+                getChannelsCommand = "Plex^@EREFRESH@|GetChannels<Client Quit>";
+                socket.Send(System.Text.Encoding.ASCII.GetBytes(getChannelsCommand));
                 buffer = new byte[1024 * 10];
                 socket.Receive(buffer);
                 output = System.Text.Encoding.ASCII.GetString(buffer);
@@ -47,8 +53,8 @@ namespace WMCC
                 socket.Connect(loginIP, port);
                 var now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
                 var tomorrow = DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds();
-                var command = $"WMCC^@EREFRESH@|GetEntries|30450|{now}|{tomorrow}<Client Quit>";
-                socket.Send(System.Text.Encoding.ASCII.GetBytes(command));
+                getEntriesCommand = $"WMCC^@EREFRESH@|GetEntries|30450|{now}|{tomorrow}<Client Quit>";
+                socket.Send(System.Text.Encoding.ASCII.GetBytes(getEntriesCommand));
                 buffer = new byte[1024 * 64];
                 socket.Receive(buffer);
                 output = System.Text.Encoding.ASCII.GetString(buffer);

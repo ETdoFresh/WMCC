@@ -1,4 +1,5 @@
 ﻿@{
+    var class1 = new WMCC.Class1();
 }
 
 <!DOCTYPE html>
@@ -10,14 +11,14 @@
 </head>
 <body>
     <div>
-        <h3>WMCC^EREFRESH|GetServerVersion&lt;Client Quit&gt;</h3>
+        <h3>@class1.getServerVersionCommand</h3>
         <ul>
             <li>@class1.version</li>
             <li>@class1.build</li>
             <li>@class1.tvDirectory</li>
             <li>@class1.macAddress</li>
         </ul>
-        <h3>WMCC^EREFRESH|GetChannels&lt;Client Quit&gt;</h3>
+        <h3>@class1.getChannelsCommand</h3>
         <ul>
             @foreach (var channel in class1.channels)
             {
@@ -32,7 +33,7 @@
             }
         </ul>
 
-        <h3>@string.Format($"WMCC^@EREFRESH@|GetEntries|30450|{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}|{DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds()}<Client Quit>")</h3>
+        <h3>@class1.getEntriesCommand</h3>
         <ul>
             @foreach (var show in class1.shows)
             {
