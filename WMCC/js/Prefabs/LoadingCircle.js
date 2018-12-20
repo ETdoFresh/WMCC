@@ -1,6 +1,7 @@
 ﻿var LoadingCircle = function () {
     var instance = new GameObject();
     instance.Base = GameObject;
+    instance.Type = LoadingCircle;
     instance.Name = "LoadingCircle" + instance.Id;
     instance.Update = LoadingCircle.Update;
 
@@ -40,12 +41,9 @@ LoadingCircle.Update = function (gameTime) {
     this.Transform.X = App.Width / 2;
     this.Transform.Y = App.Height / 2;
 
-    //if (gameTime.TotalTime >= this.NextRefreshTime) {
-    //    for (var i = 0; i < this.Circles.length; i++) {
-    //        this.Circles[i].Alpha = 0;
-    //    }
-    //    this.Circles[this.CurrentIndex].Alpha = 1;
-    //    this.CurrentIndex = (this.CurrentIndex + 1) % this.Circles.length;
-    //    this.NextRefreshTime = gameTime.TotalTime + this.Duration;
-    //}
+    if (gameTime.TotalTime >= this.NextRefreshTime) {
+        //this.Circles[this.CurrentIndex].Alpha = 1;
+        this.CurrentIndex = (this.CurrentIndex + 1) % this.Circles.length;
+        this.NextRefreshTime = gameTime.TotalTime + this.Duration;
+    }
 };

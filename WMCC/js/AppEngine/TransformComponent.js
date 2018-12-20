@@ -2,7 +2,7 @@ var TransformComponent = function (gameObject, x, y, rotation, scaleX, scaleY)
 {
     var instance = new GameComponent();
     instance.Base = GameComponent;
-    instance.Type = "TransformComponent";
+    instance.Type = TransformComponent;
 
     instance.Name = "TransformComponent" + instance.Id;
     instance.GameObject = gameObject;

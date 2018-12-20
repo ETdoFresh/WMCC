@@ -1,7 +1,7 @@
 var ImageComponent = function (filename, anchorX, anchorY) {
     var instance = new GameComponent();
     instance.Base = GameComponent;
-    instance.Type = "ImageComponent";
+    instance.Type = ImageComponent;
 
     instance.Name = "ImageComponent" + instance.Id;
     instance.Filename = filename;

@@ -2,6 +2,7 @@
 {
     var instance = new GameObject();
     instance.Base = GameObject;
+    instance.Type = BlackBackground;
     instance.Name = "BlackBackground" + instance.Id;
     instance.Draw = BlackBackground.Draw;
     return instance;

@@ -1,6 +1,7 @@
 ﻿var CornerTime = function (color) {
     var instance = new GameObject();
     instance.Base = GameObject;
+    instance.Type = CornerTime;
     instance.Name = "CornerTime" + instance.Id;
     instance.Update = CornerTime.Update;
 

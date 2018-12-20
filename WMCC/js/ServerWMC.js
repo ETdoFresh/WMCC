@@ -5,7 +5,7 @@
     /** @type {int} **/ Port: "9081",
 
     GetConnection: function () { /** @returns {WebSocket} **/
-        if (this.Connection === undefined) {
+        if (this.Connection == undefined) {
             this.Connection = new WebSocket('ws://' + this.Host + ':' + this.Port);
             this.Connection.onmessage = this.OnReceive;
             return this.Connection;
@@ -16,11 +16,11 @@
 
     Send: function (data) {
         var connection = this.GetConnection();
-        if (connection.readyState === connection.OPEN)
+        if (connection.readyState == connection.OPEN)
             connection.send(data);
         else {
             var previousOnOpen = function () { };
-            if (typeof connection.onopen === "function")
+            if (typeof connection.onopen == "function")
                 previousOnOpen = connection.onopen;
 
             connection.onopen = function () {

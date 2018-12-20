@@ -2,7 +2,7 @@ var GameComponent = function ()
 {
     var instance = {};
     instance.Base = Object;
-    instance.Type = "GameComponent";
+    instance.Type = GameComponent;
 
     instance.Id = GameComponent.NextId++;
     instance.GameObject = undefined;
@@ -26,7 +26,7 @@ var GameComponent = function ()
 };
 
 GameComponent.NextId = 0;
-GameComponent.Type = "GameComponent";
+GameComponent.Type = GameComponent;
 
 GameComponent.Initialize = function ()
 {

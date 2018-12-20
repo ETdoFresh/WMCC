@@ -1,6 +1,7 @@
 ﻿var Circle = function (x, y, radius, r, g, b) {
     var instance = new GameObject();
     instance.Base = GameObject;
+    instance.Type = Circle;
     instance.Name = "Circle" + instance.Id;
     instance.Draw = Circle.Draw;
 
@@ -10,7 +11,7 @@
     instance.R = r ? r : 255;
     instance.G = g ? g : 255;
     instance.B = b ? b : 255;
-    //instance.Alpha = 1;
+    instance.Alpha = 1;
 
     return instance;
 };

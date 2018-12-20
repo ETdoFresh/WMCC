@@ -2,7 +2,7 @@ var TextComponent = function (text, font, fillStyle, textAlign)
 {
     var instance = new GameComponent();
     instance.Base = GameComponent;
-    instance.Type = "TextComponent";
+    instance.Type = TextComponent;
     instance.Draw = TextComponent.Draw;
 
     instance.Name = "TextComponent" + instance.Id;

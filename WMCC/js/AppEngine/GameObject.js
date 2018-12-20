@@ -2,7 +2,7 @@ var GameObject = function(name)
 {
     var instance = {};
     instance.Base = Object;
-    instance.Type = "GameObject";
+    instance.Type = GameObject;
 
     instance.Id = GameObject.NextId++;
     instance.JsonId = undefined;
@@ -44,15 +44,15 @@ var GameObject = function(name)
 };
 
 GameObject.NextId = 0;
-GameObject.Type = "GameObject";
+GameObject.Type = GameObject;
 
 GameObject.AddComponent = function(component)
 {
-    if (component && component.GetBaseType() !== "GameComponent")
+    if (component && component.GetBaseType() !== GameComponent)
     {
         console.log("Cannot insert object as component. Try AddChild function!");
     }
-    else if (component && component.GetBaseType() === "GameComponent")
+    else if (component && component.GetBaseType() == GameComponent)
     {
         this.Components.push(component);
         component.GameObject = this;
@@ -71,11 +71,11 @@ GameObject.AddComponent = function(component)
 GameObject.RemoveComponent = function(component)
 {
 
-    if (component && component.GetBaseType() === "GameComponent")
+    if (component && component.GetBaseType() == GameComponent)
     {
         for (var i = this.Components.length - 1; i >= 0; i--)
         {
-            if (this.Components[i].Id === component.Id)
+            if (this.Components[i].Id == component.Id)
             {
                 this.Components[i].GameObject = undefined;
                 this.Components.splice(i, 1);
@@ -109,19 +109,19 @@ GameObject.SendToBack = function()
 GameObject.GetComponent = function(type)
 {
     for (var i = this.Components.length - 1; i >= 0; i--)
-        if (this.Components[i].GetType() === type)
+        if (this.Components[i].GetType() == type)
             return this.Components[i];
 };
 
 GameObject.AddChild = function(child)
 {
-    if (child && child.GetBaseType() !== "GameObject")
+    if (child && child.GetBaseType() !== GameObject)
     {
         console.log("Cannot insert component as child. Try AddComponent function!");
         return;
     }
 
-    if (child && child.GetBaseType() === "GameObject")
+    if (child && child.GetBaseType() == GameObject)
     {
         this.Children.push(child);
         child.Parent = this;
@@ -138,11 +138,11 @@ GameObject.AddChild = function(child)
 
 GameObject.RemoveChild = function(child)
 {
-    if (child && child.GetBaseType() === "GameObject")
+    if (child && child.GetBaseType() == GameObject)
     {
         for (var i = this.Children.length - 1; i >= 0; i--)
         {
-            if (this.Children[i].Id === child.Id)
+            if (this.Children[i].Id == child.Id)
             {
                 this.Children[i].Parent = undefined;
                 this.Children.splice(i, 1);
@@ -171,7 +171,7 @@ GameObject.GetChildrenByName = function(name)
 GameObject.GetChildByJsonId = function(jsonId)
 {
     for (var i = 0; i < this.Children.length; i++)
-        if (this.Children[i].JsonId === jsonId)
+        if (this.Children[i].JsonId == jsonId)
             return this.Children[i];
 };
 
@@ -224,10 +224,10 @@ GameObject.Update = function(gameTime)
     {
         var i;
         for (i = 0; i < this.Children.length; i++)
-            this.Children[i].Update(gameTime);
+            this.Children[i].Update.call(this.Children[i], gameTime);
 
         for (i = 0; i < this.Components.length; i++)
-            this.Components[i].Update(gameTime);
+            this.Components[i].Update.call(this.Components[i], gameTime);
     }
 
     if (this.ScheduleDestroy)
@@ -240,11 +240,11 @@ GameObject.Draw = function (context, gameTime)
     {
         var i;
         for (i = 0; i < this.Children.length; i++)
-            this.Children[i].Draw(context, gameTime);
+            this.Children[i].Draw.call(this.Children[i], context, gameTime);
 
         for (i = 0; i < this.Components.length; i++)
             if (this.Components[i].Draw)
-                this.Components[i].Draw(context, gameTime);
+                this.Components[i].Draw.call(this.Components[i], context, gameTime);
     }
 };
 

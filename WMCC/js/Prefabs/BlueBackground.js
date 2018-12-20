@@ -2,6 +2,7 @@
 {
     var instance = new GameObject();
     instance.Base = GameObject;
+    instance.Type = BlueBackground;
     instance.Name = "BlueBackground" + instance.Id;
     instance.Initialize = BlueBackground.Initialize;
     instance.Update = BlueBackground.Update;
