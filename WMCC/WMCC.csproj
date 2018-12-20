@@ -93,11 +93,14 @@
     <Content Include="js\AppEngine\GameObject.js" />
     <Content Include="js\AppEngine\TextComponent.js" />
     <Content Include="js\AppEngine\ImageComponent.js" />
+    <Content Include="js\Prefabs\LoadingCircle.js" />
     <Content Include="js\Prefabs\CornerTime.js" />
     <Content Include="js\Prefabs\BlackBackground.js" />
     <Content Include="js\Prefabs\BlueBackground.js" />
     <Content Include="js\Scenes\LogoScene.js" />
     <Content Include="js\AppEngine\TransformComponent.js" />
+    <Content Include="js\ServerWMC.js" />
+    <Content Include="Loading.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

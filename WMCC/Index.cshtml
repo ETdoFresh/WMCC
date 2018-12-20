@@ -13,6 +13,8 @@
     <script src="~/js/Prefabs/BlackBackground.js"></script>
     <script src="~/js/Prefabs/BlueBackground.js"></script>
     <script src="~/js/Prefabs/CornerTime.js"></script>
+    <script src="~/js/Prefabs/LoadingCircle.js"></script>
+    <script src="~/js/ServerWMC.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Windows Media Center Canvas</title>
 </head>
@@ -20,6 +22,8 @@
     <canvas id="AppCanvas"></canvas>
     <script type="text/javascript">
         App.StartApp();
+        ServerWMC.Send("WMCC^EREFRESH|GetServerVersion<Client Quit>");
+        //ServerWMC.Send("WMCC^EREFRESH|GetChannels<Client Quit>");
         window.onresize = App.OnResize;
     </script>
 </body>

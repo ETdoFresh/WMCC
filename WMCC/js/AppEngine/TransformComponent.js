@@ -1,4 +1,4 @@
-var TransformComponent = function(gameObject, x, y, rotation, scaleX, scaleY)
+var TransformComponent = function (gameObject, x, y, rotation, scaleX, scaleY)
 {
     var instance = new GameComponent();
     instance.Base = GameComponent;
