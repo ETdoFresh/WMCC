@@ -93,6 +93,7 @@
     <Content Include="js\AppEngine\GameObject.js" />
     <Content Include="js\AppEngine\TextComponent.js" />
     <Content Include="js\AppEngine\ImageComponent.js" />
+    <Content Include="js\Prefabs\Circle.js" />
     <Content Include="js\Prefabs\LoadingCircle.js" />
     <Content Include="js\Prefabs\CornerTime.js" />
     <Content Include="js\Prefabs\BlackBackground.js" />

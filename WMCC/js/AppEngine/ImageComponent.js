@@ -53,7 +53,7 @@ ImageComponent.Draw = function(context, gameTime)
         {
             context.save();
             context.translate(x, y);
-            context.rotate(this.GameObject.Transform.Rotation);
+            context.rotate(this.GameObject.Transform.GetContentRotation());
             context.globalAlpha = this.Alpha;
             context.drawImage(image, sx, sy, swidth, sheight, drawX, drawY, width, height);
             context.restore();

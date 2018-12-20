@@ -4,7 +4,13 @@
     instance.Name = "LoadingCircle" + instance.Id;
     instance.Update = LoadingCircle.Update;
 
-    instance.AddComponent(new ImageComponent("Loading.gif"));
+    //var circles = [new CircleComponent()];
+    //for (var circle in circles)
+    instance.AddChild(new Circle(0, 30));
+    instance.AddChild(new Circle(30, 0));
+    instance.AddChild(new Circle(0, -30));
+    instance.AddChild(new Circle(-30, 0));
+
     instance.Update();
 
     return instance;
@@ -17,4 +23,5 @@ LoadingCircle.Update = function (gameTime) {
     this.Transform.ScaleY = Math.max(scaleX, scaleY);
     this.Transform.X = App.Width / 2;
     this.Transform.Y = App.Height / 2;
+    this.Transform.Rotation = (this.Transform.Rotation + 1) % 360;
 };
