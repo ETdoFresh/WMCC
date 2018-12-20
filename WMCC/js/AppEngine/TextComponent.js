@@ -24,15 +24,13 @@ TextComponent.Draw = function (context, gameTime)
         var scaleX = this.GameObject.Transform.GetContentScaleX();
         var scaleY = this.GameObject.Transform.GetContentScaleY();
 
-        context.save();
-        context.translate(x, y);
+        context.setTransform(scaleX, 0, 0, scaleY, x, y);
         context.rotate(this.GameObject.Transform.Rotation);
         context.globalAlpha = this.Alpha;
         context.font = this.Font;
         context.fillStyle = this.FillStyle;
         context.textAlign = this.TextAlign;
-        context.fillText(this.Text, x, y);
-        context.restore();
+        context.fillText(this.Text, 0, 0);
     }
 
     this.Base.Draw.call(this, context, gameTime);

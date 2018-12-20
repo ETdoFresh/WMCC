@@ -1,5 +1,4 @@
-var ImageComponent = function(filename, anchorX, anchorY)
-{
+var ImageComponent = function (filename, anchorX, anchorY) {
     var instance = new GameComponent();
     instance.Base = GameComponent;
     instance.Type = "ImageComponent";
@@ -20,51 +19,37 @@ var ImageComponent = function(filename, anchorX, anchorY)
     return instance;
 };
 
-ImageComponent.LoadContent = function()
-{
+ImageComponent.LoadContent = function () {
     this.Image = new Image();
     this.Image.src = this.Filename;
     this.Base.LoadContent.call(this);
 
     var that = this;
-    this.Image.onload = function (ev)
-    {
+    this.Image.onload = function (ev) {
         that.Width = that.Image.width;
         that.Height = that.Image.height;
     };
 };
 
-ImageComponent.Draw = function(context, gameTime)
-{
-    if (this.Visible)
-    {
+ImageComponent.Draw = function (context, gameTime) {
+    if (this.Visible) {
         var image = this.Image;
-        var sx = 0;
-        var sy = 0;
-        var swidth = this.Width;
-        var sheight = this.Height;
         var x = this.GameObject.Transform.GetContentX();
         var y = this.GameObject.Transform.GetContentY();
-        var width = swidth * this.GameObject.Transform.GetContentScaleX();
-        var height = sheight * this.GameObject.Transform.GetContentScaleY();
-        var drawX = -width * this.AnchorX;
-        var drawY = -height * this.AnchorY;
-        if (width > 0 && height > 0)
-        {
-            context.save();
-            context.translate(x, y);
-            context.rotate(this.GameObject.Transform.GetContentRotation());
-            context.globalAlpha = this.Alpha;
-            context.drawImage(image, sx, sy, swidth, sheight, drawX, drawY, width, height);
-            context.restore();
-        }
+        var scaleX = this.GameObject.Transform.GetContentScaleX();
+        var scaleY = this.GameObject.Transform.GetContentScaleY();
+        var drawX = -this.Width * this.AnchorX;
+        var drawY = -this.Height * this.AnchorY;
+        context.setTransform(scaleX, 0, 0, scaleY, x, y);
+        context.rotate(this.GameObject.Transform.GetContentRotation());
+        context.globalAlpha = this.Alpha;
+        context.drawImage(image, drawX, drawY);
     }
 
     this.Base.Draw.call(this, context, gameTime);
 };
 
-ImageComponent.Destroy = function()
-{
+ImageComponent.Destroy = function () {
     this.Image.onload = null;
     this.Base.Destroy.call(this);
 };

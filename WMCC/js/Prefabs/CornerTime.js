@@ -11,13 +11,12 @@
 };
 
 CornerTime.Update = function (gameTime) {
-    var scaleX = App.Width / 1920;
-    var scaleY = App.Height / 1080;
-    var fontSize = Math.max(scaleX, scaleY) * 30;
-    var xOffset = Math.max(scaleX, scaleY) * 40;
-    var yOffset = Math.max(scaleX, scaleY) * 30;
-    this.Text.Font = fontSize + "px Arial";
-    this.Transform.X = App.Width / 2 - xOffset;
+    var scaleX =  App.Width / 1920;
+    var scaleY =  App.Height / 1080;
+    var scale = this.Transform.ScaleX = this.Transform.ScaleY = Math.max(scaleX, scaleY);
+    var xOffset = scale * 40;
+    var yOffset = scale * 50;
+    this.Transform.X = App.Width - xOffset;
     this.Transform.Y = yOffset;
 
     this.Text.Text = CornerTime.FormatAMPM(new Date());

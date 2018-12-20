@@ -29,6 +29,7 @@
 
         App.Scene.Update(App.Time);
 
+        App.Context.setTransform(1, 0, 0, 1, 0, 0);
         App.Context.clearRect(0, 0, App.Canvas.width, App.Canvas.height);
         App.Scene.Draw(App.Context, App.Time);
 
