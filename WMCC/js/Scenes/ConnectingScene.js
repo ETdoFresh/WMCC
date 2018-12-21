@@ -1,10 +1,9 @@
 var ConnectingScene = function () {
     var instance = new GameObject("Logo Scene");
     instance.Base = GameObject;
-    instance.Type = "Scene";
+    instance.Type = ConnectingScene;
 
     instance.AddChild(new BlackBackground());
-    instance.AddChild(new BlueBackground());
     instance.AddChild(new CornerTime());
     var loadingCircle = instance.AddChild(new LoadingCircle());
 
@@ -14,6 +13,7 @@ var ConnectingScene = function () {
         loadingCircle.Destroy();
         ParseServerInfo(e.data);
         instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
+        App.ChangeScene(StartUpScene, true);
     }
 
     function ParseServerInfo(data) {

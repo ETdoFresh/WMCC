@@ -98,10 +98,12 @@
     <Content Include="js\Prefabs\CornerTime.js" />
     <Content Include="js\Prefabs\BlackBackground.js" />
     <Content Include="js\Prefabs\BlueBackground.js" />
+    <Content Include="js\Prefabs\StartUpGreenButton.js" />
     <Content Include="js\Prefabs\TextObject.js" />
     <Content Include="js\Queue.js" />
     <Content Include="js\Scenes\ConnectingScene.js" />
     <Content Include="js\AppEngine\TransformComponent.js" />
+    <Content Include="js\Scenes\StartUpScene.js" />
     <Content Include="js\ServerWMC\Parser.js" />
     <Content Include="js\ServerWMC\ServerInfo.js" />
     <Content Include="js\ServerWMC\ServerWMC.js" />
@@ -117,6 +119,7 @@
   <ItemGroup>
     <Content Include="Debug.cshtml" />
     <Content Include="Index.cshtml" />
+    <Content Include="drawings.svgz" />
     <None Include="packages.config" />
     <Content Include="Video.cshtml" />
     <None Include="Web.Debug.config">

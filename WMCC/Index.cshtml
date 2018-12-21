@@ -11,12 +11,14 @@
     <script src="~/js/AppEngine/TextComponent.js"></script>
     <script src="~/js/AppEngine/TransformComponent.js"></script>
     <script src="~/js/Scenes/ConnectingScene.js"></script>
+    <script src="~/js/Scenes/StartUpScene.js"></script>
     <script src="~/js/Prefabs/BlackBackground.js"></script>
     <script src="~/js/Prefabs/BlueBackground.js"></script>
     <script src="~/js/Prefabs/CornerTime.js"></script>
     <script src="~/js/Prefabs/Circle.js"></script>
     <script src="~/js/Prefabs/TextObject.js"></script>
     <script src="~/js/Prefabs/LoadingCircle.js"></script>
+    <script src="~/js/Prefabs/StartUpGreenButton.js"></script>
     <script src="~/js/ServerWMC/ServerWMC.js"></script>
     <script src="~/js/ServerWMC/ServerInfo.js"></script>
     <script src="~/js/ServerWMC/Parser.js"></script>
@@ -26,7 +28,7 @@
 <body>
     <canvas id="AppCanvas"></canvas>
     <script type="text/javascript">
-        App.StartApp();
+        App.StartApp(ConnectingScene);
         window.onresize = App.OnResize;
     </script>
 </body>

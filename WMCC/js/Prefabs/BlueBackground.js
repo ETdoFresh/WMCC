@@ -4,24 +4,16 @@
     instance.Base = GameObject;
     instance.Type = BlueBackground;
     instance.Name = "BlueBackground" + instance.Id;
-    instance.Initialize = BlueBackground.Initialize;
     instance.Update = BlueBackground.Update;
-
-    instance.image = undefined;
+    instance.Image = instance.AddComponent(new ImageComponent("Background.png"));
 
     return instance;
 };
 
-BlueBackground.Initialize = function ()
-{
-    this.Base.Initialize.call(this);
-    this.image = this.AddComponent(new ImageComponent("Background.png"));
-};
-
 BlueBackground.Update = function ()
 {
-    var scaleX = App.Width / this.image.Width;
-    var scaleY = App.Height / this.image.Height;
+    var scaleX = App.Width / this.Image.Width;
+    var scaleY = App.Height / this.Image.Height;
     this.Transform.X = App.Width / 2;
     this.Transform.Y = App.Height / 2;
     this.Transform.ScaleX = Math.max(scaleX, scaleY);

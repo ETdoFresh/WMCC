@@ -6,7 +6,7 @@
     Height: undefined,
     Time: { Start: 0, LastTime: 0, DeltaTime: 0, TotalTime: 0 },
 
-    StartApp: function ()
+    StartApp: function (scene)
     {
         App.Canvas = document.getElementById("AppCanvas");
         App.Context = App.Canvas.getContext("2d");
@@ -17,7 +17,7 @@
         App.Time.LastTime = App.Time.Start;
 
         this.OnResize();
-        App.ChangeScene(new ConnectingScene());
+        App.ChangeScene(scene);
         App.Loop();
     },
 
@@ -44,7 +44,7 @@
         if (destroyPreviousScene)
             App.Scene.Destroy();
 
-        App.Scene = scene;
+        App.Scene = new scene();
         App.Scene.Initialize();
     },
 
