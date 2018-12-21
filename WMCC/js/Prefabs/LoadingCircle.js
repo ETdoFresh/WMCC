@@ -15,6 +15,9 @@
     circles.push(instance.AddChild(new Circle(-30, 0)));
     circles.push(instance.AddChild(new Circle(-20, -20)));
 
+    for (var i = 0; i < circles.length; i++)
+        circles[i].Alpha = 0.1;
+
     instance.CurrentIndex = 0;
     instance.NextRefreshTime = 0;
     instance.Duration = 100;

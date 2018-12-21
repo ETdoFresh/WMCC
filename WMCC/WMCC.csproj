@@ -102,7 +102,9 @@
     <Content Include="js\Queue.js" />
     <Content Include="js\Scenes\ConnectingScene.js" />
     <Content Include="js\AppEngine\TransformComponent.js" />
-    <Content Include="js\ServerWMC.js" />
+    <Content Include="js\ServerWMC\Parser.js" />
+    <Content Include="js\ServerWMC\ServerInfo.js" />
+    <Content Include="js\ServerWMC\ServerWMC.js" />
     <Content Include="Loading.gif" />
     <Content Include="Web.config" />
   </ItemGroup>

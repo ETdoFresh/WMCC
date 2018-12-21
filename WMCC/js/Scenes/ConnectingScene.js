@@ -1,5 +1,4 @@
-var ConnectingScene = function()
-{
+var ConnectingScene = function () {
     var instance = new GameObject("Logo Scene");
     instance.Base = GameObject;
     instance.Type = "Scene";
@@ -13,7 +12,16 @@ var ConnectingScene = function()
 
     function OnReceiveResponse(e) {
         loadingCircle.Destroy();
-        instance.AddChild(new TextObject(e.data, null, "white", "center"));
+        ParseServerInfo(e.data);
+        instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
+    }
+
+    function ParseServerInfo(data) {
+        var lines = Parser.Parse(data);
+        ServerInfo.Version = lines[0];
+        ServerInfo.buildNumber = lines[1];
+        ServerInfo.tvLocation = lines[2];
+        ServerInfo.macAddress = lines[3];
     }
 
     return instance;
