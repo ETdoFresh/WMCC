@@ -8,11 +8,12 @@
     instance.BlueBackground = instance.AddChild(new BlueBackground());
     instance.AddChild(new CornerTime());
     instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
-
     instance.GreenButton = instance.AddChild(new StartUpGreenButton());
 
-    instance.BlueBackground.Image.Alpha = 1;
-    instance.GreenButton.Image.Alpha = 1;
+    Action.Alpha(instance.BlueBackground.Image, 0.0, 1.0, 1000);
+    Action.Alpha(instance.GreenButton.Image, 0.0, 1.0, 500);
+    Action.Scale(instance.GreenButton.Transform, 1.0, 0.0, 2500);
+    //Action.PlaySound("");
 
     return instance;
 };

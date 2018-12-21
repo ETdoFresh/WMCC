@@ -27,6 +27,7 @@
         App.Time.LastTime += App.Time.DeltaTime;
         App.Time.TotalTime += App.Time.DeltaTime;
 
+        Action.Update(App.Time);
         App.Scene.Update(App.Time);
 
         App.Context.setTransform(1, 0, 0, 1, 0, 0);

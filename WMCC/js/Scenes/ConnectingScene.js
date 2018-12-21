@@ -17,17 +17,17 @@ var ConnectingScene = function () {
         ParseServerInfo(e.data);
         instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
         App.ChangeScene(StartUpScene, true);
-    };
+    }
 
     function OnError(e) {
         loadingCircle.Enabled = false;
-        text.Text = "There was an error with the WebSocket."
+        text.Text = "There was an error with the WebSocket.";
     }
 
     function OnClose(e) {
         loadingCircle.Enabled = false;
         text.Text = WebSocket2.ErrorCodes[e.code];
-    };
+    }
 
     function ParseServerInfo(data) {
         var lines = Parser.Parse(data);
@@ -35,7 +35,7 @@ var ConnectingScene = function () {
         ServerInfo.buildNumber = lines[1];
         ServerInfo.tvLocation = lines[2];
         ServerInfo.macAddress = lines[3];
-    };
+    }
 
     return instance;
 };

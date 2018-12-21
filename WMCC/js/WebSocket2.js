@@ -15,6 +15,6 @@
         "1012": "The server is terminating the connection because it is restarting.",
         "1013": "The server is terminating the connection due to a temporary condition, e.g. it is overloaded and is casting off some of its clients.",
         "1014": "The server was acting as a gateway or proxy and received an invalid response from the upstream server. This is similar to 502 HTTP Status Code.",
-        "1015": "Reserved. Indicates that the connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can't be verified).",
+        "1015": "Reserved. Indicates that the connection was closed due to a failure to perform a TLS handshake (e.g., the server certificate can't be verified)."
     }
-}
+};

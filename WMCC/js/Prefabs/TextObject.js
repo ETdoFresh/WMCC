@@ -15,4 +15,4 @@ TextObject.Update = function (gameTime) {
     this.TextComponent.Text = this.Text;
     this.Transform.X = App.Width / 2;
     this.Transform.Y = App.Height / 2;
-}
+};

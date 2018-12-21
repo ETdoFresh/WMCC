@@ -88,11 +88,13 @@
   <ItemGroup>
     <Content Include="Background.png" />
     <Content Include="css\canvas.css" />
+    <Content Include="js\AppEngine\Action.js" />
     <Content Include="js\AppEngine\App.js" />
     <Content Include="js\AppEngine\GameComponent.js" />
     <Content Include="js\AppEngine\GameObject.js" />
     <Content Include="js\AppEngine\TextComponent.js" />
     <Content Include="js\AppEngine\ImageComponent.js" />
+    <Content Include="js\MathExtension.js" />
     <Content Include="js\Prefabs\Circle.js" />
     <Content Include="js\Prefabs\LoadingCircle.js" />
     <Content Include="js\Prefabs\CornerTime.js" />
