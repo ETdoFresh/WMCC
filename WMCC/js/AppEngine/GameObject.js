@@ -236,7 +236,7 @@ GameObject.Update = function(gameTime)
 
 GameObject.Draw = function (context, gameTime)
 {
-    if (this.Visible)
+    if (this.Enabled && this.Visible)
     {
         var i;
         for (i = 0; i < this.Children.length; i++)
@@ -250,13 +250,6 @@ GameObject.Draw = function (context, gameTime)
 
 GameObject.Destroy = function()
 {
-    //var base = this.Base;
-    //if (base && base !== Object)
-    //{
-    //    this.Base = null;
-    //    base.Destroy.call(this);
-    //}
-
     var i;
     if (this.Children)
     {

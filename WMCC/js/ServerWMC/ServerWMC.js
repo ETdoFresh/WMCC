@@ -12,6 +12,8 @@
             ServerWMC.Connection = new WebSocket('ws://' + ServerWMC.Host + ':' + ServerWMC.Port);
             ServerWMC.AwaitingMessage = true;
             ServerWMC.Connection.onmessage = ServerWMC.OnReceive;
+            ServerWMC.Connection.onerror = function (e) { ServerWMC.OnError(e); };
+            ServerWMC.Connection.onclose = function (e) { ServerWMC.OnClose(e); };
             return ServerWMC.Connection;
         }
         else
@@ -53,5 +55,8 @@
             }
         }
         console.log(e.data);
-    }
+    },
+
+    OnError: function (e) { },
+    OnClose: function (e) { }
 };

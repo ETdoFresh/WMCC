@@ -107,6 +107,7 @@
     <Content Include="js\ServerWMC\Parser.js" />
     <Content Include="js\ServerWMC\ServerInfo.js" />
     <Content Include="js\ServerWMC\ServerWMC.js" />
+    <Content Include="js\WebSocket2.js" />
     <Content Include="Loading.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
