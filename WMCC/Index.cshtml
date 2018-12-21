@@ -3,17 +3,19 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="~/css/canvas.css" />
+    <script src="~/js/Queue.js"></script>
     <script src="~/js/AppEngine/App.js"></script>
     <script src="~/js/AppEngine/GameObject.js"></script>
     <script src="~/js/AppEngine/GameComponent.js"></script>
     <script src="~/js/AppEngine/ImageComponent.js"></script>
     <script src="~/js/AppEngine/TextComponent.js"></script>
     <script src="~/js/AppEngine/TransformComponent.js"></script>
-    <script src="~/js/Scenes/LogoScene.js"></script>
+    <script src="~/js/Scenes/ConnectingScene.js"></script>
     <script src="~/js/Prefabs/BlackBackground.js"></script>
     <script src="~/js/Prefabs/BlueBackground.js"></script>
     <script src="~/js/Prefabs/CornerTime.js"></script>
     <script src="~/js/Prefabs/Circle.js"></script>
+    <script src="~/js/Prefabs/TextObject.js"></script>
     <script src="~/js/Prefabs/LoadingCircle.js"></script>
     <script src="~/js/ServerWMC.js"></script>
     <meta name="viewport" content="width=device-width" />
@@ -23,7 +25,6 @@
     <canvas id="AppCanvas"></canvas>
     <script type="text/javascript">
         App.StartApp();
-        ServerWMC.Send("WMCC^EREFRESH|GetServerVersion<Client Quit>");
         window.onresize = App.OnResize;
     </script>
 </body>

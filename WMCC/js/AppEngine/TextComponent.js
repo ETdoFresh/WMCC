@@ -7,9 +7,9 @@ var TextComponent = function (text, font, fillStyle, textAlign)
 
     instance.Name = "TextComponent" + instance.Id;
     instance.Text = text ? text : "";
+    instance.Font = font ? font : "1em Arial";
     instance.FillStyle = fillStyle ? fillStyle : "black";
     instance.TextAlign = textAlign ? textAlign : "left";
-    instance.Font = font ? font : "1em Arial";
     instance.Alpha = 1;
 
     return instance;

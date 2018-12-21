@@ -17,7 +17,7 @@
         App.Time.LastTime = App.Time.Start;
 
         this.OnResize();
-        App.ChangeScene(new LogoScene());
+        App.ChangeScene(new ConnectingScene());
         App.Loop();
     },
 
@@ -31,6 +31,7 @@
 
         App.Context.setTransform(1, 0, 0, 1, 0, 0);
         App.Context.clearRect(0, 0, App.Canvas.width, App.Canvas.height);
+        App.Context.beginPath();
         App.Scene.Draw(App.Context, App.Time);
 
         //Mouse.CalculateGameCoordinates();

@@ -6,27 +6,18 @@
     instance.Update = LoadingCircle.Update;
 
     var circles = instance.Circles = [];
-    circles.push(instance.AddChild(new Circle(0, 30)));
-    circles.push(instance.AddChild(new Circle(30, 0)));
     circles.push(instance.AddChild(new Circle(0, -30)));
-    circles.push(instance.AddChild(new Circle(-30, 0)));
-    circles.push(instance.AddChild(new Circle(20, 20)));
     circles.push(instance.AddChild(new Circle(20, -20)));
+    circles.push(instance.AddChild(new Circle(30, 0)));
+    circles.push(instance.AddChild(new Circle(20, 20)));
+    circles.push(instance.AddChild(new Circle(0, 30)));
     circles.push(instance.AddChild(new Circle(-20, 20)));
+    circles.push(instance.AddChild(new Circle(-30, 0)));
     circles.push(instance.AddChild(new Circle(-20, -20)));
-
-    circles[0].Alpha = 0;
-    circles[1].Alpha = 0.1;
-    circles[2].Alpha = 0.2;
-    circles[3].Alpha = 0.3;
-    circles[4].Alpha = 0.4;
-    circles[5].Alpha = 0.5;
-    circles[6].Alpha = 0.6;
-    circles[7].Alpha = 0.7;
 
     instance.CurrentIndex = 0;
     instance.NextRefreshTime = 0;
-    instance.Duration = 1000;
+    instance.Duration = 100;
 
     instance.Update(App.Time);
 
@@ -41,8 +32,11 @@ LoadingCircle.Update = function (gameTime) {
     this.Transform.X = App.Width / 2;
     this.Transform.Y = App.Height / 2;
 
+    for (var i = 0; i < this.Circles.length; i++)
+        this.Circles[i].Alpha = Math.max(this.Circles[i].Alpha - gameTime.DeltaTime / this.Duration / 8, 0);
+
     if (gameTime.TotalTime >= this.NextRefreshTime) {
-        //this.Circles[this.CurrentIndex].Alpha = 1;
+        this.Circles[this.CurrentIndex].Alpha = 1;
         this.CurrentIndex = (this.CurrentIndex + 1) % this.Circles.length;
         this.NextRefreshTime = gameTime.TotalTime + this.Duration;
     }

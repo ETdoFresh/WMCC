@@ -52,7 +52,7 @@ GameObject.AddComponent = function(component)
     {
         console.log("Cannot insert object as component. Try AddChild function!");
     }
-    else if (component && component.GetBaseType() == GameComponent)
+    else if (component && component.GetBaseType() === GameComponent)
     {
         this.Components.push(component);
         component.GameObject = this;
@@ -71,11 +71,11 @@ GameObject.AddComponent = function(component)
 GameObject.RemoveComponent = function(component)
 {
 
-    if (component && component.GetBaseType() == GameComponent)
+    if (component && component.GetBaseType() === GameComponent)
     {
         for (var i = this.Components.length - 1; i >= 0; i--)
         {
-            if (this.Components[i].Id == component.Id)
+            if (this.Components[i].Id === component.Id)
             {
                 this.Components[i].GameObject = undefined;
                 this.Components.splice(i, 1);
@@ -109,7 +109,7 @@ GameObject.SendToBack = function()
 GameObject.GetComponent = function(type)
 {
     for (var i = this.Components.length - 1; i >= 0; i--)
-        if (this.Components[i].GetType() == type)
+        if (this.Components[i].GetType() === type)
             return this.Components[i];
 };
 
@@ -121,7 +121,7 @@ GameObject.AddChild = function(child)
         return;
     }
 
-    if (child && child.GetBaseType() == GameObject)
+    if (child && child.GetBaseType() === GameObject)
     {
         this.Children.push(child);
         child.Parent = this;
@@ -138,11 +138,11 @@ GameObject.AddChild = function(child)
 
 GameObject.RemoveChild = function(child)
 {
-    if (child && child.GetBaseType() == GameObject)
+    if (child && child.GetBaseType() === GameObject)
     {
         for (var i = this.Children.length - 1; i >= 0; i--)
         {
-            if (this.Children[i].Id == child.Id)
+            if (this.Children[i].Id === child.Id)
             {
                 this.Children[i].Parent = undefined;
                 this.Children.splice(i, 1);
@@ -171,7 +171,7 @@ GameObject.GetChildrenByName = function(name)
 GameObject.GetChildByJsonId = function(jsonId)
 {
     for (var i = 0; i < this.Children.length; i++)
-        if (this.Children[i].JsonId == jsonId)
+        if (this.Children[i].JsonId === jsonId)
             return this.Children[i];
 };
 
@@ -250,12 +250,12 @@ GameObject.Draw = function (context, gameTime)
 
 GameObject.Destroy = function()
 {
-    var base = this.Base;
-    if (base)
-    {
-        this.Base = null;
-        base.Destroy.call(this);
-    }
+    //var base = this.Base;
+    //if (base && base !== Object)
+    //{
+    //    this.Base = null;
+    //    base.Destroy.call(this);
+    //}
 
     var i;
     if (this.Children)
@@ -284,7 +284,7 @@ GameObject.Destroy = function()
         if(this.hasOwnProperty(i))
             this[i] = null;
 
-    if (Game.Scene.Trigger) Game.Scene.Trigger.MarkCondition("NumberEqual");
+    if (App.Scene.Trigger) App.Scene.Trigger.MarkCondition("NumberEqual");
 };
 
 GameObject.GetBaseType = function()
