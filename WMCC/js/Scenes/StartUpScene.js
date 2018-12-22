@@ -2,22 +2,23 @@
     var instance = new GameObject("StartUp Scene");
     instance.Base = GameObject;
     instance.Type = StartUpScene;
-    //instance.Update = StartUpScene.Update;
 
     instance.AddChild(new BlackBackground());
-    instance.BlueBackground = instance.AddChild(new BlueBackground());
+    var blueBackground = instance.BlueBackground = instance.AddChild(new BlueBackground());
     instance.AddChild(new CornerTime());
-    instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
-    instance.GreenButton = instance.AddChild(new StartUpGreenButton());
+    var text = instance.AddChild(new TextObject("ServerWMC " + ServerInfo.Version, "50px", "white", "center"));
+    var greenButton = instance.AddChild(new StartUpGreenButton());
 
-    Action.Alpha(instance.BlueBackground.Image, 0.0, 1.0, 1000);
-    Action.Alpha(instance.GreenButton.Image, 0.0, 1.0, 500);
-    Action.Scale(instance.GreenButton.Transform, 1.0, 0.0, 2500);
+    Action.Alpha(blueBackground.Image, 0.0, 1.0, 1000);
+    Action.Alpha(greenButton.Image, 0.0, 1.0, 500);
+    Action.Scale(greenButton.Transform, 1.0, 0.0, 2500);
+    text.TextComponent.Alpha = 0;
     //Action.PlaySound("");
 
-    return instance;
-};
+    setTimeout(function () { text.TextComponent.Alpha = 1; }, 500);
+    setTimeout(function () { Action.Alpha(text.TextComponent, 1.0, 0.0, 1000); }, 3000);
+    setTimeout(function () { Action.Alpha(greenButton.Image, 1.0, 0.0, 2000); }, 1000);
+    setTimeout(function () { App.ChangeScene(MainMenuScene); }, 4000);
 
-StartUpScene.Update = function (gameTime) {
-    this.Base.Update.call(this, gameTime);
+    return instance;
 };

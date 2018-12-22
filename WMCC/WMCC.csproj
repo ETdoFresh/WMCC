@@ -88,6 +88,9 @@
   <ItemGroup>
     <Content Include="Background.png" />
     <Content Include="css\canvas.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="GreenButton.png" />
+    <Content Include="guide.png" />
     <Content Include="js\AppEngine\Action.js" />
     <Content Include="js\AppEngine\App.js" />
     <Content Include="js\AppEngine\GameComponent.js" />
@@ -95,6 +98,8 @@
     <Content Include="js\AppEngine\TextComponent.js" />
     <Content Include="js\AppEngine\ImageComponent.js" />
     <Content Include="js\MathExtension.js" />
+    <Content Include="js\Prefabs\ImageObject.js" />
+    <Content Include="js\Prefabs\SelectionSquare.js" />
     <Content Include="js\Prefabs\Circle.js" />
     <Content Include="js\Prefabs\LoadingCircle.js" />
     <Content Include="js\Prefabs\CornerTime.js" />
@@ -105,12 +110,18 @@
     <Content Include="js\Queue.js" />
     <Content Include="js\Scenes\ConnectingScene.js" />
     <Content Include="js\AppEngine\TransformComponent.js" />
+    <Content Include="js\Scenes\MainMenuScene.js" />
     <Content Include="js\Scenes\StartUpScene.js" />
     <Content Include="js\ServerWMC\Parser.js" />
     <Content Include="js\ServerWMC\ServerInfo.js" />
     <Content Include="js\ServerWMC\ServerWMC.js" />
     <Content Include="js\WebSocket2.js" />
+    <Content Include="liveTV.png" />
     <Content Include="Loading.gif" />
+    <Content Include="recordedTV.png" />
+    <Content Include="search.png" />
+    <Content Include="selection.png" />
+    <Content Include="unknown.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
