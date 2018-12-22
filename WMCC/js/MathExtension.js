@@ -1,1 +1,1 @@
-﻿Math.clamp01 = function (val) { return Math.max(0, Math.min(1, val)); }
+﻿Math.clamp01 = function (val) { return Math.max(0, Math.min(1, val)); };
