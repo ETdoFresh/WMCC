@@ -101,6 +101,8 @@
     <Content Include="js\KeyCode.js" />
     <Content Include="js\MathExtension.js" />
     <Content Include="js\Prefabs\ImageObject.js" />
+    <Content Include="js\Prefabs\MainMenuItem.js" />
+    <Content Include="js\Prefabs\MainMenuItemBar.js" />
     <Content Include="js\Prefabs\SelectionSquare.js" />
     <Content Include="js\Prefabs\Circle.js" />
     <Content Include="js\Prefabs\LoadingCircle.js" />
