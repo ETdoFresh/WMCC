@@ -8,15 +8,24 @@ var ConnectingScene = function () {
     var loadingCircle = instance.AddChild(new LoadingCircle());
     var text = instance.AddChild(new TextObject("", null, null, "center"));
 
-    ServerWMC.Send("WMCC^EREFRESH|GetServerVersion<Client Quit>", OnReceiveResponse);
+    var i = 0;
+    var commands = ["IPAddress: 192.168.254.194", "Port: 9080", "WMCC^EREFRESH|GetServerVersion<Client Quit>"];
+    ServerWMC.Send(commands[i], OnReceiveResponse);
     ServerWMC.OnError = OnError;
     ServerWMC.OnClose = OnClose;
 
     function OnReceiveResponse(e) {
+        if (i < commands.length - 1) {
+            i++;
+            ServerWMC.Send(commands[i], OnReceiveResponse);
+            return;
+        }
         loadingCircle.Enabled = false;
         ParseServerInfo(e.data);
         instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
-        App.ChangeScene(StartUpScene, true);
+
+        if (!e.data.startsWith("Error"))
+            App.ChangeScene(StartUpScene, true);
     }
 
     function OnError(e) {
