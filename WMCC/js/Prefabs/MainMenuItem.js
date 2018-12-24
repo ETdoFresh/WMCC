@@ -6,9 +6,9 @@
 
     name = name ? name : "unknown";
     icon = icon ? icon : "unknown.png";
-    scene = scene ? scene : MainMenuScene;
+    instance.Scene = scene ? scene : MainMenuScene;
 
-    instance.ItemText = instance.AddChild(new TextObject(name, "lighter 30px Eras ITC, Malgun Gothic, Arial", "white", "center"));
+    instance.ItemText = instance.AddChild(new TextObject(name, "lighter 25px Eras ITC, Malgun Gothic, Arial", "white", "center"));
     instance.ItemIcon = instance.AddChild(new ImageObject(icon));
     return instance;
 };

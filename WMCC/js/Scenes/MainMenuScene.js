@@ -8,20 +8,30 @@
     instance.AddChild(new CornerTime());
 
     var mainMenuBar = instance.AddChild(new MainMenuItemBar("TV"
-        , new MainMenuItem("recorded TV", "recordedTV.png", MainMenuScene)
-        , new MainMenuItem("guide", "guide.png", MainMenuScene)
-        , new MainMenuItem("live TV", "liveTV.png", MainMenuScene)
-        , new MainMenuItem("search", "search.png", MainMenuScene)
+        , new MainMenuItem("recorded TV", "recordedTV.png", StartUpScene)
+        , new MainMenuItem("guide", "guide.png", StartUpScene)
+        , new MainMenuItem("live TV", "liveTV.png", StartUpScene)
+        , new MainMenuItem("search", "search.png", StartUpScene)
     ));
 
     var tvText = instance.AddChild(new TextObject("TV", "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
     tvText.ScreenPosition = { x: 0.175, y: 0.525 };
 
-    Input.AddKeyDownListener(KeyCode.LeftArrow, function (e) { console.log("Input: Left Arrow"); });
-    Input.AddKeyDownListener(KeyCode.RightArrow, function (e) { console.log("Input: Right Arrow"); });
-    Input.AddKeyDownListener(KeyCode.Enter, function (e) { console.log("Input: Enter"); });
-
     instance.AddChild(new SelectionSquare());
+
+    var onLeftArrow = function (e) { mainMenuBar.SelectPrevious(); };
+    var onRightArrow = function (e) { mainMenuBar.SelectNext(); };
+    var onEnter = function (e) { mainMenuBar.Select(); };
+
+    Input.AddKeyDownListener(KeyCode.LeftArrow, onLeftArrow);
+    Input.AddKeyDownListener(KeyCode.RightArrow, onRightArrow);
+    Input.AddKeyDownListener(KeyCode.Enter, onEnter);
+
+    instance.OnDestroy = function () {
+        Input.RemoveKeyDownListener(KeyCode.LeftArrow, onLeftArrow);
+        Input.RemoveKeyDownListener(KeyCode.RightArrow, onRightArrow);
+        Input.RemoveKeyDownListener(KeyCode.Enter, onEnter);
+    };
 
     return instance;
 };

@@ -36,6 +36,7 @@ var GameObject = function(name)
     instance.CountChildrenByType = GameObject.CountChildrenByType;
     instance.SendToBack = GameObject.SendToBack;
     instance.BringToFront = GameObject.BringToFront;
+    instance.OnDestroy = function (e) { };
 
     instance.ScheduleDestroy = false;
     instance.Transform = instance.AddComponent(new TransformComponent(instance));
@@ -250,6 +251,8 @@ GameObject.Draw = function (context, gameTime)
 
 GameObject.Destroy = function()
 {
+    this.OnDestroy();
+
     var i;
     if (this.Children)
     {

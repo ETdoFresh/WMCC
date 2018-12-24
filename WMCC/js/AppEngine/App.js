@@ -40,9 +40,9 @@
         requestAnimationFrame(App.Loop, undefined);
     },
 
-    ChangeScene: function (scene, destroyPreviousScene)
+    ChangeScene: function (scene, destroyPreviousScene = true)
     {
-        if (destroyPreviousScene)
+        if (App.Scene && destroyPreviousScene)
             App.Scene.Destroy();
 
         App.Scene = new scene();
