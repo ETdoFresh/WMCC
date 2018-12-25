@@ -5,6 +5,7 @@
     instance.Name = (name ? name : "Object") + instance.Id;
     instance.Is = AppObject.Is;
     instance.OnDestroy = DoNothing;
+    instance.Destroy = function () { instance.OnDestroy(); };
     return instance;
 };
 

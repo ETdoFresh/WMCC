@@ -57,7 +57,7 @@ GameObject.RemoveComponent = function (component) {
 
 GameObject.GetComponent = function (type) {
     for (var i = this.Components.length - 1; i >= 0; i--)
-        if (this.Components[i].GetType() === type)
+        if (this.Components[i].Is(type))
             return this.Components[i];
 };
 

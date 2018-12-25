@@ -18,6 +18,7 @@ var TransformComponent = function (x, y, rotation, scaleX, scaleY)
     instance.RemoveChild = TransformComponent.RemoveChild;
     instance.GetChildByName = TransformComponent.GetChildByName;
     instance.GetChildrenByName = TransformComponent.GetChildrenByName;
+    instance.OnDestroy = TransformComponent.OnDestroy;
 
     instance.AppUpdate = TransformComponent.AppUpdate;
     instance.Draw = TransformComponent.Draw;
@@ -120,4 +121,10 @@ TransformComponent.Draw = function (context, gameTime) {
     for (var i = 0; i < this.Children.length; i++)
         if (this.Children[i].Draw)
             this.Children[i].Draw.call(this.Children[i], context, gameTime);
+};
+
+TransformComponent.OnDestroy = function () {
+    for (var i = 0; i < this.Children.length; i++)
+        if (this.Children[i].GameObject)
+            this.Children[i].GameObject.Destroy();
 };

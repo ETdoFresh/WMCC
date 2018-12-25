@@ -1,21 +1,16 @@
 var TextComponent = function (text, font, fillStyle, textAlign) {
-    var instance = new GameComponent();
-    instance.Base = GameComponent;
-    instance.Type = TextComponent;
-    instance.Draw = TextComponent.Draw;
-
-    instance.Name = "TextComponent" + instance.Id;
+    var instance = new Behaviour("TextComponent", [TextComponent]);
     instance.Text = text ? text : "";
     instance.Font = font ? font : "1em Arial";
     instance.FillStyle = fillStyle ? fillStyle : "white";
     instance.TextAlign = textAlign ? textAlign : "left";
     instance.Alpha = 1;
-
+    instance.Draw = TextComponent.Draw;
     return instance;
 };
 
 TextComponent.Draw = function (context, gameTime) {
-    if (!this.Enabled || !this.Visible) return;
+    if (!this.Enabled) return;
 
     var x = this.GameObject.Transform.GetContentX();
     var y = this.GameObject.Transform.GetContentY();
@@ -29,6 +24,4 @@ TextComponent.Draw = function (context, gameTime) {
     context.fillStyle = this.FillStyle;
     context.textAlign = this.TextAlign;
     context.fillText(this.Text, 0, 0);
-
-    this.Base.Draw.call(this, context, gameTime);
 };

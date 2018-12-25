@@ -1,6 +1,5 @@
 ﻿var BlueBackground = function () {
-    var instance = new GameObject("BlueBackground", null,
-        [new ScreenFitImageComponent("Background.png", 0.5, 0.5)]
-    );
+    var components = [new ScreenSizedImageComponent("Background.png")];
+    var instance = new GameObject("BlueBackground", null, components);
     return instance;
 };
