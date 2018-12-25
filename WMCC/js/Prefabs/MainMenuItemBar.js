@@ -4,15 +4,22 @@
     instance.Type = MainMenuItemBar;
     instance.Name = "MainMenuItemBar" + instance.Id;
 
+    var title = instance.AddChild(new TextObject("TV", "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
+    title.ScreenPosition = { x: 0.175, y: 0.525 };
+
     var mainMenuItems = arguments;
+    var items = [];
     var i;
-    for (i = 0; i < mainMenuItems.length - 1; i++)
-        instance.AddChild(mainMenuItems[i + 1]);
+    for (i = 0; i < mainMenuItems.length - 1; i++) {
+        var item = instance.AddChild(mainMenuItems[i + 1]);
+        items.push(item);
+        //item.Enabled = false;
+    }
 
     var selectedItem = 0;
     function UpdateBar() {
-        for (i = 0; i < instance.Children.length; i++) {
-            var item = instance.Children[i];
+        for (i = 0; i < items.length; i++) {
+            var item = items[i];
             var offsetI = i - selectedItem;
             item.ItemText.TextComponent.Alpha = 0.5;
             item.ItemText.TextComponent.Font = "lighter 25px Eras ITC, Malgun Gothic, Arial";
@@ -53,6 +60,16 @@
     instance.Select = function () {
         console.log(instance.Children[selectedItem].Scene);
         App.ChangeScene(instance.Children[selectedItem].Scene);
+    };
+
+    instance.ActivateBar = function () {
+        for (var i = 0; i < items.length; i++)
+            items[i].Enabled = true;
+    };
+
+    instance.DeactivateBar = function () {
+        for (var i = 0; i < items.length; i++)
+            items[i].Enabled = false;
     };
 
     return instance;

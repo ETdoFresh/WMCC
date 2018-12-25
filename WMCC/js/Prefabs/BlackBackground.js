@@ -10,6 +10,7 @@
 
 BlackBackground.Draw = function (context, gameTime)
 {
+    if (!this.Enabled || !this.Visible) return;
     context.setTransform(1, 0, 0, 1, 0, 0);
     context.globalAlpha = 1;
     context.fillStyle = 'black';

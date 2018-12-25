@@ -1,5 +1,4 @@
-var GameObject = function(name)
-{
+var GameObject = function (name) {
     var instance = {};
     instance.Base = Object;
     instance.Type = GameObject;
@@ -47,14 +46,11 @@ var GameObject = function(name)
 GameObject.NextId = 0;
 GameObject.Type = GameObject;
 
-GameObject.AddComponent = function(component)
-{
-    if (component && component.GetBaseType() !== GameComponent)
-    {
+GameObject.AddComponent = function (component) {
+    if (component && component.GetBaseType() !== GameComponent) {
         console.log("Cannot insert object as component. Try AddChild function!");
     }
-    else if (component && component.GetBaseType() === GameComponent)
-    {
+    else if (component && component.GetBaseType() === GameComponent) {
         this.Components.push(component);
         component.GameObject = this;
         component.Name = this.Name + "_" + component.Name;
@@ -69,15 +65,11 @@ GameObject.AddComponent = function(component)
     }
 };
 
-GameObject.RemoveComponent = function(component)
-{
+GameObject.RemoveComponent = function (component) {
 
-    if (component && component.GetBaseType() === GameComponent)
-    {
-        for (var i = this.Components.length - 1; i >= 0; i--)
-        {
-            if (this.Components[i].Id === component.Id)
-            {
+    if (component && component.GetBaseType() === GameComponent) {
+        for (var i = this.Components.length - 1; i >= 0; i--) {
+            if (this.Components[i].Id === component.Id) {
                 this.Components[i].GameObject = undefined;
                 this.Components.splice(i, 1);
             }
@@ -87,43 +79,35 @@ GameObject.RemoveComponent = function(component)
     }
 };
 
-GameObject.BringToFront = function()
-{
-    if (this.Parent)
-    {
+GameObject.BringToFront = function () {
+    if (this.Parent) {
         var i = this.Parent.Children.indexOf(this);
         this.Parent.Children.splice(i, 1);
         this.Parent.Children.push(this);
     }
 };
 
-GameObject.SendToBack = function()
-{
-    if (this.Parent)
-    {
+GameObject.SendToBack = function () {
+    if (this.Parent) {
         var i = this.Parent.Children.indexOf(this);
         this.Parent.Children.splice(i, 1);
         this.Parent.Children.unshift(this);
     }
 };
 
-GameObject.GetComponent = function(type)
-{
+GameObject.GetComponent = function (type) {
     for (var i = this.Components.length - 1; i >= 0; i--)
         if (this.Components[i].GetType() === type)
             return this.Components[i];
 };
 
-GameObject.AddChild = function(child)
-{
-    if (child && child.GetBaseType() !== GameObject)
-    {
+GameObject.AddChild = function (child) {
+    if (child && child.GetBaseType() !== GameObject) {
         console.log("Cannot insert component as child. Try AddComponent function!");
         return;
     }
 
-    if (child && child.GetBaseType() === GameObject)
-    {
+    if (child && child.GetBaseType() === GameObject) {
         this.Children.push(child);
         child.Parent = this;
 
@@ -137,14 +121,10 @@ GameObject.AddChild = function(child)
     }
 };
 
-GameObject.RemoveChild = function(child)
-{
-    if (child && child.GetBaseType() === GameObject)
-    {
-        for (var i = this.Children.length - 1; i >= 0; i--)
-        {
-            if (this.Children[i].Id === child.Id)
-            {
+GameObject.RemoveChild = function (child) {
+    if (child && child.GetBaseType() === GameObject) {
+        for (var i = this.Children.length - 1; i >= 0; i--) {
+            if (this.Children[i].Id === child.Id) {
                 this.Children[i].Parent = undefined;
                 this.Children.splice(i, 1);
             }
@@ -153,15 +133,13 @@ GameObject.RemoveChild = function(child)
     }
 };
 
-GameObject.GetChildByName = function(name)
-{
+GameObject.GetChildByName = function (name) {
     for (var i = 0; i < this.Children.length; i++)
         if (this.Children[i].Name.indexOf(name) > -1)
             return this.Children[i];
 };
 
-GameObject.GetChildrenByName = function(name)
-{
+GameObject.GetChildrenByName = function (name) {
     var children = [];
     for (var i = 0; i < this.Children.length; i++)
         if (this.Children[i].Name.indexOf(name) > -1)
@@ -169,16 +147,14 @@ GameObject.GetChildrenByName = function(name)
     return children;
 };
 
-GameObject.GetChildByJsonId = function(jsonId)
-{
+GameObject.GetChildByJsonId = function (jsonId) {
     for (var i = 0; i < this.Children.length; i++)
         if (this.Children[i].JsonId === jsonId)
             return this.Children[i];
 };
 
 // TODO implement type on Game Object
-GameObject.CountChildrenByType = function(type)
-{
+GameObject.CountChildrenByType = function (type) {
     var count = 0;
     for (var i = 0; i < this.Children.length; i++)
         if (this.Children[i].Name.indexOf(type) > -1)
@@ -186,10 +162,8 @@ GameObject.CountChildrenByType = function(type)
     return count;
 };
 
-GameObject.Initialize = function()
-{
-    if (!this.Initialized)
-    {
+GameObject.Initialize = function () {
+    if (!this.Initialized) {
         this.Initialized = true;
 
         var i;
@@ -202,10 +176,8 @@ GameObject.Initialize = function()
     this.LoadContent();
 };
 
-GameObject.LoadContent = function()
-{
-    if (!this.Loaded)
-    {
+GameObject.LoadContent = function () {
+    if (!this.Loaded) {
         this.Loaded = true;
         this.Enabled = true;
         this.Visible = true;
@@ -219,10 +191,8 @@ GameObject.LoadContent = function()
     }
 };
 
-GameObject.Update = function(gameTime)
-{
-    if (this.Enabled)
-    {
+GameObject.Update = function (gameTime) {
+    if (this.Enabled) {
         var i;
         for (i = 0; i < this.Children.length; i++)
             this.Children[i].Update.call(this.Children[i], gameTime);
@@ -235,56 +205,49 @@ GameObject.Update = function(gameTime)
         this.Destroy();
 };
 
-GameObject.Draw = function (context, gameTime)
-{
-    if (this.Enabled && this.Visible)
-    {
-        var i;
-        for (i = 0; i < this.Children.length; i++)
-            this.Children[i].Draw.call(this.Children[i], context, gameTime);
+GameObject.Draw = function (context, gameTime) {
+    if (!this.Enabled || !this.Visible) return;
 
-        for (i = 0; i < this.Components.length; i++)
-            if (this.Components[i].Draw)
-                this.Components[i].Draw.call(this.Components[i], context, gameTime);
-    }
+    var i;
+    for (i = 0; i < this.Children.length; i++)
+        this.Children[i].Draw.call(this.Children[i], context, gameTime);
+
+    for (i = 0; i < this.Components.length; i++)
+        if (this.Components[i].Draw)
+            this.Components[i].Draw.call(this.Components[i], context, gameTime);
 };
 
-GameObject.Destroy = function()
-{
+GameObject.Destroy = function () {
     this.OnDestroy();
 
     var i;
-    if (this.Children)
-    {
+    if (this.Children) {
         for (i = this.Children.length - 1; i >= 0; i--)
             this.Children[i].Destroy();
 
         this.Children = null;
     }
 
-    if (this.Components)
-    {
+    if (this.Components) {
         for (i = this.Components.length - 1; i >= 0; i--)
             this.Components[i].Destroy();
 
         this.Components = null;
     }
 
-    if (this.Parent)
-    {
+    if (this.Parent) {
         this.Parent.RemoveChild(this);
         this.Parent = null;
     }
 
     for (i in this)
-        if(this.hasOwnProperty(i))
+        if (this.hasOwnProperty(i))
             this[i] = null;
 
     if (App.Scene.Trigger) App.Scene.Trigger.MarkCondition("NumberEqual");
 };
 
-GameObject.GetBaseType = function()
-{
+GameObject.GetBaseType = function () {
     if (this.Base && this.Base.GetBaseType)
         return this.Base.GetBaseType();
 

@@ -1,5 +1,4 @@
-var TextComponent = function (text, font, fillStyle, textAlign)
-{
+var TextComponent = function (text, font, fillStyle, textAlign) {
     var instance = new GameComponent();
     instance.Base = GameComponent;
     instance.Type = TextComponent;
@@ -15,23 +14,21 @@ var TextComponent = function (text, font, fillStyle, textAlign)
     return instance;
 };
 
-TextComponent.Draw = function (context, gameTime)
-{
-    if (this.Visible)
-    {
-        var x = this.GameObject.Transform.GetContentX();
-        var y = this.GameObject.Transform.GetContentY();
-        var scaleX = this.GameObject.Transform.GetContentScaleX();
-        var scaleY = this.GameObject.Transform.GetContentScaleY();
+TextComponent.Draw = function (context, gameTime) {
+    if (!this.Enabled || !this.Visible) return;
 
-        context.setTransform(scaleX, 0, 0, scaleY, x, y);
-        context.rotate(this.GameObject.Transform.Rotation);
-        context.globalAlpha = this.Alpha;
-        context.font = this.Font;
-        context.fillStyle = this.FillStyle;
-        context.textAlign = this.TextAlign;
-        context.fillText(this.Text, 0, 0);
-    }
+    var x = this.GameObject.Transform.GetContentX();
+    var y = this.GameObject.Transform.GetContentY();
+    var scaleX = this.GameObject.Transform.GetContentScaleX();
+    var scaleY = this.GameObject.Transform.GetContentScaleY();
+
+    context.setTransform(scaleX, 0, 0, scaleY, x, y);
+    context.rotate(this.GameObject.Transform.Rotation);
+    context.globalAlpha = this.Alpha;
+    context.font = this.Font;
+    context.fillStyle = this.FillStyle;
+    context.textAlign = this.TextAlign;
+    context.fillText(this.Text, 0, 0);
 
     this.Base.Draw.call(this, context, gameTime);
 };
