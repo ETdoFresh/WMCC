@@ -136,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Debug.cshtml" />
-    <Content Include="Index.cshtml" />
+    <Content Include="Index.html" />
     <Content Include="drawings.svgz" />
     <None Include="packages.config" />
     <Content Include="Video.cshtml" />
