@@ -4,11 +4,15 @@
     <link rel="stylesheet" type="text/css" href="css/canvas.css" />
     <script src="js/Action.js"></script>
     <script src="js/App.js"></script>
+    <script src="js/AppObject.js"></script>
+    <script src="js/ArrayExtension.js"></script>
+    <script src="js/Behaviour.js"></script>
     <script src="js/BlackBackground.js"></script>
     <script src="js/BlueBackground.js"></script>
     <script src="js/Circle.js"></script>
     <script src="js/ConnectingScene.js"></script>
     <script src="js/CornerTime.js"></script>
+    <script src="js/DoNothing.js"></script>
     <script src="js/GameComponent.js"></script>
     <script src="js/GameObject.js"></script>
     <script src="js/ImageComponent.js"></script>
@@ -22,11 +26,14 @@
     <script src="js/MathExtension.js"></script>
     <script src="js/Parser.js"></script>
     <script src="js/Queue.js"></script>
+    <script src="js/RectangleComponent.js"></script>
+    <script src="js/ScreenFitImageComponent.js"></script>
     <script src="js/SelectionSquare.js"></script>
     <script src="js/ServerInfo.js"></script>
     <script src="js/ServerWMC.js"></script>
     <script src="js/StartUpGreenButton.js"></script>
     <script src="js/StartUpScene.js"></script>
+    <script src="js/TestScene.js"></script>
     <script src="js/TextComponent.js"></script>
     <script src="js/TextObject.js"></script>
     <script src="js/TransformComponent.js"></script>
@@ -37,7 +44,7 @@
 <body>
     <canvas id="AppCanvas"></canvas>
     <script type="text/javascript">
-        App.StartApp(ConnectingScene);
+        App.StartApp(TestScene);
         window.onresize = App.OnResize;
     </script>
 </body>

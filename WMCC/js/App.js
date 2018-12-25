@@ -28,7 +28,7 @@
         App.Time.TotalTime += App.Time.DeltaTime;
 
         Action.Update(App.Time);
-        App.Scene.Update(App.Time);
+        App.Scene.AppUpdate(App.Time);
 
         App.Context.setTransform(1, 0, 0, 1, 0, 0);
         App.Context.clearRect(0, 0, App.Canvas.width, App.Canvas.height);
@@ -46,7 +46,6 @@
             App.Scene.Destroy();
 
         App.Scene = new scene();
-        App.Scene.Initialize();
     },
 
     OnResize: function ()

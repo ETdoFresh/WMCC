@@ -1,11 +1,6 @@
-var TransformComponent = function (gameObject, x, y, rotation, scaleX, scaleY)
+var TransformComponent = function (x, y, rotation, scaleX, scaleY)
 {
-    var instance = new GameComponent();
-    instance.Base = GameComponent;
-    instance.Type = TransformComponent;
-
-    instance.Name = "TransformComponent" + instance.Id;
-    instance.GameObject = gameObject;
+    var instance = new Behaviour("TransformComponent", [TransformComponent]);
     instance.X = x ? x : 0;
     instance.Y = y ? y : 0;
     instance.Rotation = rotation ? rotation : 0;
@@ -18,6 +13,16 @@ var TransformComponent = function (gameObject, x, y, rotation, scaleX, scaleY)
     instance.GetContentScaleX = TransformComponent.GetContentScaleX;
     instance.GetContentScaleY = TransformComponent.GetContentScaleY;
 
+    instance.Children = [];
+    instance.AddChild = TransformComponent.AddChild;
+    instance.RemoveChild = TransformComponent.RemoveChild;
+    instance.GetChildByName = TransformComponent.GetChildByName;
+    instance.GetChildrenByName = TransformComponent.GetChildrenByName;
+
+    instance.AppUpdate = TransformComponent.AppUpdate;
+    instance.Draw = TransformComponent.Draw;
+
+    instance.Awake();
     return instance;
 };
 
@@ -59,4 +64,60 @@ TransformComponent.GetContentScaleY = function()
         return this.ScaleY * this.GameObject.Parent.Transform.GetContentScaleY();
     else
         return this.ScaleY;
+};
+
+TransformComponent.AddChild = function (child) {
+    if (child && child.Is(GameObject)) {
+        this.Children.push(child);
+        child.Parent = this;
+
+        if (this.Initialized && !child.Initialized)
+            child.Initialize();
+
+        if (this.Loaded && !child.Loaded)
+            child.LoadContent();
+
+        return child;
+    }
+    console.log("Cannot insert component as child. Try AddComponent function!");
+};
+
+TransformComponent.RemoveChild = function (child) {
+    if (child && child.GetBaseType() === GameObject) {
+        for (var i = this.Children.length - 1; i >= 0; i--) {
+            if (this.Children[i].Id === child.Id) {
+                this.Children[i].Parent = undefined;
+                this.Children.splice(i, 1);
+            }
+        }
+    }
+};
+
+TransformComponent.GetChildByName = function (name) {
+    for (var i = 0; i < this.Children.length; i++)
+        if (this.Children[i].Name.indexOf(name) > -1)
+            return this.Children[i];
+};
+
+TransformComponent.GetChildrenByName = function (name) {
+    var children = [];
+    for (var i = 0; i < this.Children.length; i++)
+        if (this.Children[i].Name.indexOf(name) > -1)
+            children.push(this.Children[i]);
+    return children;
+};
+
+TransformComponent.AppUpdate = function (gameTime) {
+    if (this.Enabled) {
+        for (var i = 0; i < this.Children.length; i++)
+            this.Children[i].AppUpdate.call(this.Children[i], gameTime);
+    }
+};
+
+TransformComponent.Draw = function (context, gameTime) {
+    if (!this.Enabled) return;
+
+    for (var i = 0; i < this.Children.length; i++)
+        if (this.Children[i].Draw)
+            this.Children[i].Draw.call(this.Children[i], context, gameTime);
 };

@@ -93,8 +93,15 @@
     <Content Include="guide.png" />
     <Content Include="js\Action.js" />
     <Content Include="js\App.js" />
+    <Content Include="js\ArrayExtension.js" />
+    <Content Include="js\Behaviour.js" />
+    <Content Include="js\DoNothing.js" />
     <Content Include="js\GameComponent.js" />
     <Content Include="js\GameObject.js" />
+    <Content Include="js\AppObject.js" />
+    <Content Include="js\ScreenFitImageComponent.js" />
+    <Content Include="js\RectangleComponent.js" />
+    <Content Include="js\TestScene.js" />
     <Content Include="js\TextComponent.js" />
     <Content Include="js\ImageComponent.js" />
     <Content Include="js\Input.js" />

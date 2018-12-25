@@ -1,72 +1,26 @@
-var GameComponent = function ()
+var GameComponent = function (name, type)
 {
-    var instance = {};
-    instance.Base = Object;
-    instance.Type = GameComponent;
-
-    instance.Id = GameComponent.NextId++;
+    var instance = AppObject(name, [GameComponent].concat(type));
     instance.GameObject = undefined;
-    instance.Initialized = false;
-    instance.Loaded = false;
-    instance.Enabled = false;
-    instance.Visible = false;
-
-    instance.Initialize = GameComponent.Initialize;
-    instance.LoadContent = GameComponent.LoadContent;
-    instance.Update = GameComponent.Update;
-    instance.Draw = GameComponent.Draw;
-    instance.Destroy = GameComponent.Destroy;
-    instance.Test = GameComponent.Test;
-    instance.GetType = GameComponent.GetType;
-    instance.GetBaseType = GameComponent.GetBaseType;
-
+    instance.AppUpdate = GameComponent.AppUpdate;
+    instance.Draw = DoNothing;
+    instance.Awake = DoNothing;
+    instance.Update = DoNothing;
+    instance.OnDestroy = DoNothing;
     instance.ScheduleDestroy = false;
-
     return instance;
 };
 
-GameComponent.NextId = 0;
-GameComponent.Type = GameComponent;
-
-GameComponent.Initialize = function ()
+GameComponent.AppUpdate = function (gameTime)
 {
-    if (!this.Initialized)
-        this.Initialized = true;
-
-    this.LoadContent();
-};
-
-GameComponent.LoadContent = function ()
-{
-    if (!this.Loaded)
-    {
-        this.Loaded = true;
-        this.Enabled = true;
-        this.Visible = true;
-    }
-};
-
-GameComponent.Update = function (gameTime)
-{
-    //if (this.Enabled) { }
-
+    this.Update(gameTime);
     if (this.ScheduleDestroy)
         this.Destroy();
 };
 
-GameComponent.Draw = function (context, gameTime)
-{
-    //if (this.Visible) { }
-};
-
 GameComponent.Destroy = function ()
 {
-    var base = this.Base;
-    if (base)
-    {
-        this.Base = null;
-        base.Destroy.call(this);
-    }
+    this.OnDestroy();
 
     if (this.GameObject)
     {
@@ -77,22 +31,4 @@ GameComponent.Destroy = function ()
     for (var i in this)
         if (this.hasOwnProperty(i))
             this[i] = null;
-};
-
-GameComponent.Test = function ()
-{
-    console.log(this);
-};
-
-GameComponent.GetType = function()
-{
-    return this.Type;
-};
-
-GameComponent.GetBaseType = function()
-{
-    if (this.Base && this.Base.GetBaseType)
-        return this.Base.GetBaseType();
-
-    return this.Type;
 };
