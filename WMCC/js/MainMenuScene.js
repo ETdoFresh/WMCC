@@ -1,15 +1,13 @@
 ﻿var MainMenuScene = function () {
     var instance = new GameObject("MainMenu Scene");
-    instance.Base = GameObject;
-    instance.Type = MainMenuScene;
 
-    instance.AddChild(new BlackBackground());
-    instance.AddChild(new BlueBackground());
-    instance.AddChild(new CornerTime());
+    instance.Transform.AddChild(new BlackBackground());
+    instance.Transform.AddChild(new BlueBackground());
+    instance.Transform.AddChild(new CornerTime());
 
     var bars = [];
 
-    bars.push(instance.AddChild(new MainMenuItemBar("TV"
+    bars.push(instance.Transform.AddChild(new MainMenuItemBar("TV"
         , new MainMenuItem("recorded TV", "recordedTV.png", StartUpScene)
         , new MainMenuItem("guide", "guide.png", StartUpScene)
         , new MainMenuItem("live TV", "liveTV.png", StartUpScene)
@@ -23,7 +21,7 @@
     //    , new MainMenuItem("search", "search.png", StartUpScene)
     //)));
 
-    instance.AddChild(new SelectionSquare());
+    instance.Transform.AddChild(new SelectionSquare());
 
     var selectedBar = 0;
     var onLeftArrow = function (e) { bars[selectedBar].SelectPrevious(); };

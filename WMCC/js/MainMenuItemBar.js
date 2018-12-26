@@ -4,43 +4,43 @@
     instance.Type = MainMenuItemBar;
     instance.Name = "MainMenuItemBar" + instance.Id;
 
-    var title = instance.AddChild(new TextObject("TV", "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
-    title.ScreenPosition = { x: 0.175, y: 0.525 };
+    var title = instance.Transform.AddChild(new TextObject("TV", { x: 0.175, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
 
     var mainMenuItems = arguments;
     var items = [];
     var i;
     for (i = 0; i < mainMenuItems.length - 1; i++) {
-        var item = instance.AddChild(mainMenuItems[i + 1]);
+        var item = instance.Transform.AddChild(mainMenuItems[i + 1]);
         items.push(item);
-        //item.Enabled = false;
     }
 
     var selectedItem = 0;
     function UpdateBar() {
         for (i = 0; i < items.length; i++) {
             var item = items[i];
+            var text = item.ItemText;
+            var icon = item.ItemIcon;
             var offsetI = i - selectedItem;
-            item.ItemText.TextComponent.Alpha = 0.5;
-            item.ItemText.TextComponent.Font = "lighter 25px Eras ITC, Malgun Gothic, Arial";
-            item.ItemText.TextComponent.TextAlign = "center";
-            item.ItemIcon.Scale = { x: 0.1, y: 0.1 };
+            text.Alpha = 0.5;
+            text.Font = "lighter 25px Eras ITC, Malgun Gothic, Arial";
+            text.TextAlign = "center";
+            icon.ScreenSize = { x: 0.1, y: 0.1 };
 
             if (i < selectedItem) {
-                item.ItemText.ScreenPosition = { x: 0.185 + 0.125 * offsetI, y: 0.7 };
-                item.ItemIcon.ScreenPosition = { x: 0.185 + 0.125 * offsetI, y: 0.625 };
+                text.ScreenPosition = { x: 0.185 + 0.125 * offsetI, y: 0.7 };
+                icon.ScreenPosition = { x: 0.185 + 0.125 * offsetI, y: 0.625 };
             }
             else if (i === selectedItem) {
-                item.ItemText.TextComponent.Alpha = 1;
-                item.ItemText.TextComponent.Font = "lighter 35px Eras ITC, Malgun Gothic, Arial";
-                item.ItemText.TextComponent.TextAlign = "right";
-                item.ItemText.ScreenPosition = { x: 0.34, y: 0.725 };
-                item.ItemIcon.ScreenPosition = { x: 0.25, y: 0.625 };
-                item.ItemIcon.Scale = { x: 0.2, y: 0.2 };
+                text.Alpha = 1;
+                text.Font = "lighter 35px Eras ITC, Malgun Gothic, Arial";
+                text.TextAlign = "right";
+                text.ScreenPosition = { x: 0.34, y: 0.725 };
+                icon.ScreenPosition = { x: 0.25, y: 0.625 };
+                icon.ScreenSize = { x: 0.2, y: 0.2 };
             }
             else {
-                item.ItemText.ScreenPosition = { x: 0.325 + 0.125 * offsetI, y: 0.7 };
-                item.ItemIcon.ScreenPosition = { x: 0.325 + 0.125 * offsetI, y: 0.625 };
+                text.ScreenPosition = { x: 0.325 + 0.125 * offsetI, y: 0.7 };
+                icon.ScreenPosition = { x: 0.325 + 0.125 * offsetI, y: 0.625 };
             }
         }
     }
@@ -53,13 +53,12 @@
     };
 
     instance.SelectNext = function () {
-        selectedItem = Math.min(selectedItem + 1, instance.Children.length - 1);
+        selectedItem = Math.min(selectedItem + 1, mainMenuItems.length - 2);
         UpdateBar();
     };
 
     instance.Select = function () {
-        console.log(instance.Children[selectedItem].Scene);
-        App.ChangeScene(instance.Children[selectedItem].Scene);
+        App.ChangeScene(mainMenuItems[selectedItem].Scene);
     };
 
     instance.ActivateBar = function () {

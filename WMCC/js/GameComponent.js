@@ -8,6 +8,7 @@ var GameComponent = function (name, type)
     instance.Update = DoNothing;
     instance.OnDestroy = DoNothing;
     instance.ScheduleDestroy = false;
+    instance.WasAwake = false;
     return instance;
 };
 

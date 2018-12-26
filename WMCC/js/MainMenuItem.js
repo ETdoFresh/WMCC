@@ -1,14 +1,11 @@
 ﻿var MainMenuItem = function (name, icon, scene) {
-    var instance = new GameObject();
-    instance.Base = GameObject;
-    instance.Type = MainMenuItem;
-    instance.Name = "MainMenuItem" + instance.Id;
+    var instance = new GameObject("MainMenuItem");
 
     name = name ? name : "unknown";
     icon = icon ? icon : "unknown.png";
     instance.Scene = scene ? scene : MainMenuScene;
 
-    instance.ItemText = instance.AddChild(new TextObject(name, "lighter 25px Eras ITC, Malgun Gothic, Arial", "white", "center"));
-    instance.ItemIcon = instance.AddChild(new ImageObject(icon));
+    instance.ItemText = instance.AddComponent(new ScreenPositionedTextComponent(name, null, "lighter 25px Eras ITC, Malgun Gothic, Arial", "white", "center"));
+    instance.ItemIcon = instance.AddComponent(new ScreenSizedImageComponent(icon, null, null, null, false));
     return instance;
 };

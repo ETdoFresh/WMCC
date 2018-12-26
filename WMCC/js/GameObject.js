@@ -28,11 +28,10 @@ GameObject.AddComponent = function (component) {
         component.GameObject = this;
         component.Name = this.Name + "_" + component.Name;
 
-        if (this.Initialized && !component.Initialized)
-            component.Initialize();
-
-        if (this.Loaded && !component.Loaded)
-            component.LoadContent();
+        if (!component.WasAwake) {
+            component.WasAwake = true;
+            component.Awake();
+        }
 
         return component;
     }
@@ -90,7 +89,9 @@ GameObject.Destroy = function () {
     }
 
     if (this.Parent) {
-        this.Parent.RemoveChild(this);
+        if (this.Parent.RemoveChild)
+            this.Parent.RemoveChild(this);
+
         this.Parent = null;
     }
 

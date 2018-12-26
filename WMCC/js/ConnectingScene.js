@@ -1,12 +1,9 @@
 var ConnectingScene = function () {
     var instance = new GameObject("Logo Scene");
-    instance.Base = GameObject;
-    instance.Type = ConnectingScene;
-
-    instance.AddChild(new BlackBackground());
-    instance.AddChild(new CornerTime());
-    var loadingCircle = instance.AddChild(new LoadingCircle());
-    var text = instance.AddChild(new TextObject("", null, null, "center"));
+    instance.Transform.AddChild(new BlackBackground());
+    instance.Transform.AddChild(new CornerTime());
+    var loadingCircle = instance.Transform.AddChild(new LoadingCircle());
+    var text = instance.Transform.AddChild(new TextObject());
 
     var i = 0;
     var commands = ["IPAddress: 192.168.254.194", "Port: 9080", "WMCC^EREFRESH|GetServerVersion<Client Quit>"];
@@ -22,7 +19,7 @@ var ConnectingScene = function () {
         }
         loadingCircle.Enabled = false;
         ParseServerInfo(e.data);
-        instance.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
+        instance.Transform.AddChild(new TextObject(ServerInfo.Version, null, "white", "center"));
 
         if (!e.data.startsWith("Error"))
             App.ChangeScene(StartUpScene, true);
