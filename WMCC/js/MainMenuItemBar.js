@@ -1,8 +1,5 @@
-﻿var MainMenuItemBar = function (name) {
-    var instance = new GameObject();
-    instance.Base = GameObject;
-    instance.Type = MainMenuItemBar;
-    instance.Name = "MainMenuItemBar" + instance.Id;
+﻿var MainMenuItemBar = function () {
+    var instance = new GameObject("MainMenuItemBar");
 
     instance.Transform.AddChild(new TextObject("TV", { x: 0.1525, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
 
@@ -18,8 +15,8 @@
     function UpdateBar() {
         for (i = 0; i < items.length; i++) {
             var item = items[i];
-            var text = item.ItemText;
-            var icon = item.ItemIcon;
+            var text = item.GetComponentInChildren(TextComponent);
+            var icon = item.GetComponentInChildren(ImageComponent);
             var offsetI = i - selectedItem;
             text.Alpha = 0.5;
             text.Font = "lighter 25px Eras ITC, Malgun Gothic, Arial";
@@ -58,7 +55,7 @@
     };
 
     instance.Select = function () {
-        App.ChangeScene(items[selectedItem].Scene);
+        App.ChangeScene(items[selectedItem].GameObject.Scene);
     };
 
     instance.ActivateBar = function () {

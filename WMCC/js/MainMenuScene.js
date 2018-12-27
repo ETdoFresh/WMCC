@@ -12,7 +12,7 @@
         , new MainMenuItem("guide", "guide.png", StartUpScene)
         , new MainMenuItem("live TV", "liveTV.png", StartUpScene)
         , new MainMenuItem("search", "search.png", StartUpScene)
-    )));
+    )).GameObject);
 
     //bars.push(instance.AddChild(new MainMenuItemBar("Task"
     //    , new MainMenuItem("recorded TV", "recordedTV.png", StartUpScene)

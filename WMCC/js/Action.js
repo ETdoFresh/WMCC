@@ -1,6 +1,4 @@
 ﻿var Action = {
-    CreateObject: function (obj) { App.Scene.AddChild(new obj()); },
-
     AlphaValues: [],
     Alpha: function (obj, startValue, finishValue, duration) {
         obj.Alpha = startValue;

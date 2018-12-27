@@ -95,6 +95,8 @@
     <Content Include="js\App.js" />
     <Content Include="js\ArrayExtension.js" />
     <Content Include="js\Behaviour.js" />
+    <Content Include="js\CenterScreenComponent.js" />
+    <Content Include="js\CircleComponent.js" />
     <Content Include="js\CornerTimeComponent.js" />
     <Content Include="js\DoNothing.js" />
     <Content Include="js\GameComponent.js" />

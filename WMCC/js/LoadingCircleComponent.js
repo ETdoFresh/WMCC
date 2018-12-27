@@ -25,18 +25,19 @@ LoadingCircleComponent.Awake = function () {
 };
 
 LoadingCircleComponent.Update = function (gameTime) {
+    var transform = this.GameObject.Transform;
     var scaleX = App.Width / 1920;
     var scaleY = App.Height / 1080;
-    this.GameObject.Transform.ScaleX = Math.max(scaleX, scaleY);
-    this.GameObject.Transform.ScaleY = Math.max(scaleX, scaleY);
-    this.GameObject.Transform.X = App.Width / 2;
-    this.GameObject.Transform.Y = App.Height / 2;
+    transform.ScaleX = Math.max(scaleX, scaleY);
+    transform.ScaleY = Math.max(scaleX, scaleY);
+    transform.X = App.Width / 2;
+    transform.Y = App.Height / 2;
 
     for (var i = 0; i < this.Circles.length; i++)
-        this.Circles[i].Alpha = Math.max(this.Circles[i].Alpha - gameTime.DeltaTime / this.Duration / 8, 0);
+        this.Circles[i].GameObject.Image.Alpha = Math.max(this.Circles[i].GameObject.Image.Alpha - gameTime.DeltaTime / this.Duration / 8, 0);
 
     if (gameTime.TotalTime >= this.NextRefreshTime) {
-        this.Circles[this.CurrentIndex].Alpha = 1;
+        this.Circles[this.CurrentIndex].GameObject.Image.Alpha = 1;
         this.CurrentIndex = (this.CurrentIndex + 1) % this.Circles.length;
         this.NextRefreshTime = gameTime.TotalTime + this.Duration;
     }

@@ -1,17 +1,17 @@
-var GameObject = function (name, parent, components) {
+var GameObject = function (name, components) {
     var instance = new AppObject(name, [GameObject]);
-    instance.Parent = parent ? parent : App.Scene;
 
     instance.Components = [];
     instance.AddComponent = GameObject.AddComponent;
     instance.RemoveComponent = GameObject.RemoveComponent;
     instance.GetComponent = GameObject.GetComponent;
+    instance.GetComponentInChildren = GameObject.GetComponentInChildren;
 
     instance.AppUpdate = GameObject.AppUpdate;
     instance.Draw = GameObject.Draw;
     instance.Destroy = GameObject.Destroy;
 
-    instance.Transform = instance.AddComponent(new TransformComponent(instance));
+    instance.Transform = instance.AddComponent(new TransformComponent());
     instance.Enabled = true;
     instance.ScheduleDestroy = false;
 
@@ -55,9 +55,21 @@ GameObject.RemoveComponent = function (component) {
 };
 
 GameObject.GetComponent = function (type) {
-    for (var i = this.Components.length - 1; i >= 0; i--)
+    for (var i = 0; i < this.Components.length; i++)
         if (this.Components[i].Is(type))
             return this.Components[i];
+};
+
+GameObject.GetComponentInChildren = function (type) {
+    var i;
+    for (i = 0; i < this.Components.length; i++)
+        if (this.Components[i].Is(type))
+            return this.Components[i];
+
+    for (i = 0; i < this.Transform.Children.length; i++) {
+        var component = this.Transform.Children[i].GetComponentInChildren(type);
+        if (component) return component;
+    }
 };
 
 GameObject.AppUpdate = function (gameTime) {

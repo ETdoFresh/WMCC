@@ -7,6 +7,12 @@ var GameComponent = function (name, type)
     instance.Awake = DoNothing;
     instance.Update = DoNothing;
     instance.OnDestroy = DoNothing;
+
+    instance.GetComponent = function (type) { return instance.GameObject.GetComponent(type); };
+    instance.AddComponent = function (component) { return instance.GameObject.AddComponent(component); };
+    instance.RemoveComponent = function (component) { return instance.GameObject.RemoveComponent(component); };
+    instance.GetComponentInChildren = function (type) { return instance.GameObject.GetComponentInChildren(type); };
+
     instance.ScheduleDestroy = false;
     instance.WasAwake = false;
     return instance;
