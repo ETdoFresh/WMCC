@@ -1,29 +1,19 @@
-﻿var Input = function () {
-    var instance = {};
-    var keyDown = [];
-    //var keyPress = [];
-    //var keyUp = [];
+﻿var Input = {
+    KeyDown: [],
 
-    instance.AddKeyDownListener = function (keyCode, callback) {
-        keyDown.push({ keyCode: keyCode, callback: callback });
-    };
+    AddKeyDownListener: function (keyCode, callback) {
+        this.KeyDown.push({ keyCode: keyCode, callback: callback });
+    },
 
-    instance.RemoveKeyDownListener = function (keyCode, callback) {
-        for (var i = keyDown.length - 1; i >= 0; i--)
-            if (keyDown[i].keyCode === keyCode && keyDown[i].callback === callback)
-                keyDown.splice(i, 1);
-    };
-
-    window.addEventListener("keydown", function (e) {
-        for (var i = 0; i < keyDown.length; i++)
-            if (keyDown[i].keyCode === e.keyCode)
-                keyDown[i].callback(e);
-    }, false);
-
-    ////window.addEventListener("keypress", OnKeyDownListener, false);
-    ////window.addEventListener("keyup", OnKeyDownListener, false);
-
-    return instance;
+    RemoveKeyDownListener: function (keyCode, callback) {
+        for (var i = this.KeyDown.length - 1; i >= 0; i--)
+            if (this.KeyDown[i].keyCode === keyCode && this.KeyDown[i].callback === callback)
+                this.KeyDown.splice(i, 1);
+    }
 };
 
-Input = new Input();
+window.addEventListener("keydown", function (e) {
+    for (var i = 0; i < Input.KeyDown.length; i++)
+        if (Input.KeyDown[i].keyCode === e.keyCode)
+            Input.KeyDown[i].callback(e);
+}, false);

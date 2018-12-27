@@ -105,6 +105,7 @@
     <Content Include="js\LoadingCircleComponent.js" />
     <Content Include="js\Scale.js" />
     <Content Include="js\ScreenPositionedImageComponent.js" />
+    <Content Include="js\ScreenSizedVideoComponent.js" />
     <Content Include="js\ScreenSizedImageComponent.js" />
     <Content Include="js\ScreenPositionedTextComponent.js" />
     <Content Include="js\RectangleComponent.js" />
@@ -133,6 +134,7 @@
     <Content Include="js\Parser.js" />
     <Content Include="js\ServerInfo.js" />
     <Content Include="js\ServerWMC.js" />
+    <Content Include="js\VideoComponent.js" />
     <Content Include="js\WebSocket2.js" />
     <Content Include="liveTV.png" />
     <Content Include="Loading.gif" />

@@ -1,20 +1,18 @@
 ﻿var TestScene = function () {
     var instance = new GameObject("Test Scene");
+    //App.ChangeScene(ConnectingScene);
+
     instance.Transform.AddChild(new BlackBackground());
-    var blueBackground = instance.Transform.AddChild(new BlueBackground());
-    instance.Transform.AddChild(new CornerTime());
-    var text = instance.Transform.AddChild(new TextObject("ServerWMC " + ServerInfo.Version, null, "50px", "white", "center"));
-    var greenButton = instance.Transform.AddChild(new StartUpGreenButton());
 
-    Action.Alpha(blueBackground.GetComponent(ImageComponent), 0.0, 1.0, 1000);
-    Action.Alpha(greenButton.GetComponent(ImageComponent), 0.0, 1.0, 500);
-    Action.Scale(greenButton.GetComponent(TransformComponent), 1.0, 0.0, 2500);
-    text.GetComponent(TextComponent).Alpha = 0;
-    //Action.PlaySound("");
+    var videoPlayer = new GameObject("VideoPlayer");
+    instance.Transform.AddChild(videoPlayer);
+    var c = videoPlayer.AddComponent(new ScreenSizedVideoComponent([
+        { src: "http://butlerccwebdev.net/support/html5-video/media/bigbuckbunnytrailer-480p.webm", type: "video/webm" }
+        , { src: "http://butlerccwebdev.net/support/html5-video/media/bigbuckbunnytrailer-480p.mp4", type: "video/mp4" }
+        , { src: "http://butlerccwebdev.net/support/html5-video/media/bigbuckbunnytrailer-480p.ogg", type: "video/ogg" }]));
 
-    setTimeout(function () { text.GetComponent(TextComponent).Alpha = 1; }, 500);
-    setTimeout(function () { Action.Alpha(text.GetComponent(TextComponent), 1.0, 0.0, 1000); }, 3000);
-    setTimeout(function () { Action.Alpha(greenButton.GetComponent(ImageComponent), 1.0, 0.0, 2000); }, 1000);
-    setTimeout(function () { App.ChangeScene(MainMenuScene); }, 4000);
+    var play = function () { c.Video.play(); };
+    Input.AddKeyDownListener(KeyCode.Enter, play);
+    instance.OnDestroy = function () { Input.RemoveKeyDownListener(KeyCode.Enter, play); };
     return instance;
 };
