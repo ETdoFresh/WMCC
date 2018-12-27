@@ -102,6 +102,8 @@
     <Content Include="js\GameComponent.js" />
     <Content Include="js\GameObject.js" />
     <Content Include="js\AppObject.js" />
+    <Content Include="js\SearchScene.js" />
+    <Content Include="js\RecordedTVScene.js" />
     <Content Include="js\LoadingCircleComponent.js" />
     <Content Include="js\Scale.js" />
     <Content Include="js\ScreenPositionedImageComponent.js" />
@@ -109,6 +111,8 @@
     <Content Include="js\ScreenSizedImageComponent.js" />
     <Content Include="js\ScreenPositionedTextComponent.js" />
     <Content Include="js\RectangleComponent.js" />
+    <Content Include="js\GuideScene.js" />
+    <Content Include="js\TVScene.js" />
     <Content Include="js\TestScene.js" />
     <Content Include="js\TextComponent.js" />
     <Content Include="js\ImageComponent.js" />

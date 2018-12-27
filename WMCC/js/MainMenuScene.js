@@ -8,10 +8,11 @@
     var bars = [];
 
     bars.push(instance.Transform.AddChild(new MainMenuItemBar("TV"
-        , new MainMenuItem("recorded TV", "recordedTV.png", StartUpScene)
-        , new MainMenuItem("guide", "guide.png", StartUpScene)
-        , new MainMenuItem("live TV", "liveTV.png", StartUpScene)
-        , new MainMenuItem("search", "search.png", StartUpScene)
+        , new MainMenuItem("recorded TV", "recordedTV.png", RecordedTVScene)
+        , new MainMenuItem("guide", "guide.png", GuideScene)
+        , new MainMenuItem("live TV", "liveTV.png", TVScene)
+        , new MainMenuItem("search", "search.png", SearchScene)
+        , new MainMenuItem("Restart", "unknown.png", ConnectingScene)
     )).GameObject);
 
     //bars.push(instance.AddChild(new MainMenuItemBar("Task"
