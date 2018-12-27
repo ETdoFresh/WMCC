@@ -4,7 +4,7 @@
     instance.Type = MainMenuItemBar;
     instance.Name = "MainMenuItemBar" + instance.Id;
 
-    var title = instance.Transform.AddChild(new TextObject("TV", { x: 0.175, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
+    instance.Transform.AddChild(new TextObject("TV", { x: 0.1525, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
 
     var mainMenuItems = arguments;
     var items = [];
@@ -32,9 +32,9 @@
             }
             else if (i === selectedItem) {
                 text.Alpha = 1;
-                text.Font = "lighter 35px Eras ITC, Malgun Gothic, Arial";
+                text.Font = "lighter 30px Eras ITC, Malgun Gothic, Arial";
                 text.TextAlign = "right";
-                text.ScreenPosition = { x: 0.4, y: 0.825 };
+                text.ScreenPosition = { x: 0.35, y: 0.75 };
                 icon.ScreenPosition = { x: 0.25, y: 0.625 };
                 icon.ScreenSize = { x: 0.19, y: 0.19 };
             }
@@ -53,12 +53,12 @@
     };
 
     instance.SelectNext = function () {
-        selectedItem = Math.min(selectedItem + 1, mainMenuItems.length - 2);
+        selectedItem = Math.min(selectedItem + 1, items.length - 1);
         UpdateBar();
     };
 
     instance.Select = function () {
-        App.ChangeScene(mainMenuItems[selectedItem].Scene);
+        App.ChangeScene(items[selectedItem].Scene);
     };
 
     instance.ActivateBar = function () {
