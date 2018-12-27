@@ -101,6 +101,7 @@
     <Content Include="js\GameObject.js" />
     <Content Include="js\AppObject.js" />
     <Content Include="js\LoadingCircleComponent.js" />
+    <Content Include="js\Scale.js" />
     <Content Include="js\ScreenPositionedImageComponent.js" />
     <Content Include="js\ScreenSizedImageComponent.js" />
     <Content Include="js\ScreenPositionedTextComponent.js" />

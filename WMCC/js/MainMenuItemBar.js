@@ -34,9 +34,9 @@
                 text.Alpha = 1;
                 text.Font = "lighter 35px Eras ITC, Malgun Gothic, Arial";
                 text.TextAlign = "right";
-                text.ScreenPosition = { x: 0.34, y: 0.725 };
+                text.ScreenPosition = { x: 0.4, y: 0.825 };
                 icon.ScreenPosition = { x: 0.25, y: 0.625 };
-                icon.ScreenSize = { x: 0.2, y: 0.2 };
+                icon.ScreenSize = { x: 0.19, y: 0.19 };
             }
             else {
                 text.ScreenPosition = { x: 0.325 + 0.125 * offsetI, y: 0.7 };
