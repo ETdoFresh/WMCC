@@ -74,7 +74,7 @@ GameObject.GetComponentInChildren = function (type) {
 
 GameObject.AppUpdate = function (gameTime) {
     if (this.Enabled) {
-        for (var i = 0; i < this.Components.length; i++)
+        for (var i = 0; this.Components && i < this.Components.length; i++)
             this.Components[i].AppUpdate.call(this.Components[i], gameTime);
     }
 

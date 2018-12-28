@@ -45,7 +45,11 @@
         if (App.Scene && destroyPreviousScene)
             App.Scene.Destroy();
 
-        App.Scene = new scene();
+        App.Scene = null;
+        var newScene = new scene();
+        var redirectedToAnotherScene = App.Scene !== null;
+        if (!redirectedToAnotherScene)
+            App.Scene = newScene;
     },
 
     OnResize: function ()

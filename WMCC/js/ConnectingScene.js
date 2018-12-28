@@ -1,5 +1,5 @@
 var ConnectingScene = function () {
-    var instance = new GameObject("Logo Scene");
+    var instance = new GameObject("Connecting Scene");
     instance.Transform.AddChild(new BlackBackground());
     instance.Transform.AddChild(new CornerTime());
     var loadingCircle = instance.Transform.AddChild(new LoadingCircle());
