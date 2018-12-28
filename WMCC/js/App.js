@@ -17,6 +17,7 @@
         App.Time.LastTime = App.Time.Start;
 
         this.OnResize();
+        App.DoNotDestroy = new GameObject("DoNotDestroy");
         App.ChangeScene(scene);
         App.Loop();
     },
@@ -28,12 +29,14 @@
         App.Time.TotalTime += App.Time.DeltaTime;
 
         Action.Update(App.Time);
+        App.DoNotDestroy.AppUpdate(App.Time);
         App.Scene.AppUpdate(App.Time);
 
         App.Context.setTransform(1, 0, 0, 1, 0, 0);
         App.Context.clearRect(0, 0, App.Canvas.width, App.Canvas.height);
         App.Context.beginPath();
         App.Scene.Draw(App.Context, App.Time);
+        App.DoNotDestroy.Draw(App.Context, App.Time);
 
         //Mouse.CalculateGameCoordinates();
 

@@ -5,6 +5,11 @@
     instance.Transform.AddChild(new BlueBackground());
     instance.Transform.AddChild(new CornerTime());
 
+    if (!AppObject.FindObjectOfType(HomeButton)) {
+        var homeButton = new GameObject("HomeButton", [new HomeButton()]);
+        homeButton.DoNotDestroyOnLoad();
+    }
+
     var bars = [];
 
     bars.push(instance.Transform.AddChild(new MainMenuItemBar("TV"

@@ -1,5 +1,6 @@
 var GameObject = function (name, components) {
     var instance = new AppObject(name, [GameObject]);
+    GameObject.All.push(instance);
 
     instance.Components = [];
     instance.AddComponent = GameObject.AddComponent;
@@ -10,6 +11,7 @@ var GameObject = function (name, components) {
     instance.AppUpdate = GameObject.AppUpdate;
     instance.Draw = GameObject.Draw;
     instance.Destroy = GameObject.Destroy;
+    instance.DoNotDestroyOnLoad = GameObject.DoNotDestroyOnLoad;
 
     instance.Transform = instance.AddComponent(new TransformComponent());
     instance.Enabled = true;
@@ -21,6 +23,8 @@ var GameObject = function (name, components) {
 
     return instance;
 };
+
+GameObject.All = [];
 
 GameObject.AddComponent = function (component) {
     if (component && component.Is(GameComponent)) {
@@ -91,6 +95,11 @@ GameObject.Draw = function (context, gameTime) {
 };
 
 GameObject.Destroy = function () {
+    var i;
+    for (i = GameObject.All.length - 1; i >= 0; i--)
+        if (this === GameObject.All[i])
+            GameObject.All.splice(i, 1);
+
     this.OnDestroy();
 
     if (this.Components) {
@@ -110,4 +119,8 @@ GameObject.Destroy = function () {
     for (i in this)
         if (this.hasOwnProperty(i))
             this[i] = null;
+};
+
+GameObject.DoNotDestroyOnLoad = function () {
+    App.DoNotDestroy.Transform.AddChild(this);
 };

@@ -55,6 +55,9 @@
     };
 
     instance.Select = function () {
+        if (items[selectedItem].GameObject.Scene === ConnectingScene)
+            AppObject.FindObjectOfType(HomeButton).GameObject.Destroy();
+
         App.ChangeScene(items[selectedItem].GameObject.Scene);
     };
 

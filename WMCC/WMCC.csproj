@@ -102,6 +102,8 @@
     <Content Include="js\GameComponent.js" />
     <Content Include="js\GameObject.js" />
     <Content Include="js\AppObject.js" />
+    <Content Include="js\HomeButton.js" />
+    <Content Include="js\MouseButton.js" />
     <Content Include="js\SearchScene.js" />
     <Content Include="js\RecordedTVScene.js" />
     <Content Include="js\LoadingCircleComponent.js" />

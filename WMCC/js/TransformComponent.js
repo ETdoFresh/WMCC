@@ -1,12 +1,11 @@
-var TransformComponent = function (x, y, rotation, scaleX, scaleY)
-{
+var TransformComponent = function (x, y, rotation, scaleX, scaleY) {
     var instance = new Behaviour("TransformComponent", [TransformComponent]);
     instance.X = x ? x : 0;
     instance.Y = y ? y : 0;
     instance.Rotation = rotation ? rotation : 0;
     instance.ScaleX = scaleX ? scaleX : 1;
     instance.ScaleY = scaleY ? scaleY : 1;
-    
+
     instance.GetContentX = TransformComponent.GetContentX;
     instance.GetContentY = TransformComponent.GetContentY;
     instance.GetContentRotation = TransformComponent.GetContentRotation;
@@ -28,40 +27,35 @@ var TransformComponent = function (x, y, rotation, scaleX, scaleY)
     return instance;
 };
 
-TransformComponent.GetContentX = function()
-{
+TransformComponent.GetContentX = function () {
     if (this.Parent && this.Parent.GetContentX)
         return this.X + this.Parent.GetContentX();
     else
         return this.X;
 };
 
-TransformComponent.GetContentY = function()
-{
+TransformComponent.GetContentY = function () {
     if (this.Parent && this.Parent.GetContentY)
         return this.Y + this.Parent.GetContentY();
     else
         return this.Y;
 };
 
-TransformComponent.GetContentRotation = function()
-{
+TransformComponent.GetContentRotation = function () {
     if (this.Parent && this.Parent.GetContentRotation)
         return this.Rotation + this.Parent.GetContentRotation();
     else
         return this.Rotation;
 };
 
-TransformComponent.GetContentScaleX = function()
-{
+TransformComponent.GetContentScaleX = function () {
     if (this.Parent && this.Parent.GetContentScaleX)
         return this.ScaleX * this.Parent.GetContentScaleX();
     else
         return this.ScaleX;
 };
 
-TransformComponent.GetContentScaleY = function()
-{
+TransformComponent.GetContentScaleY = function () {
     if (this.Parent && this.Parent.GetContentScaleY)
         return this.ScaleY * this.Parent.GetContentScaleY();
     else
@@ -110,21 +104,22 @@ TransformComponent.GetChildrenByName = function (name) {
 
 TransformComponent.AppUpdate = function (gameTime) {
     if (this.Enabled) {
-        for (var i = 0; i < this.Children.length; i++)
-            this.Children[i].GameObject.AppUpdate.call(this.Children[i].GameObject, gameTime);
+        for (var i = 0; this.Children && i < this.Children.length; i++)
+            if (this.Children[i].GameObject && this.Children[i].GameObject.AppUpdate)
+                this.Children[i].GameObject.AppUpdate.call(this.Children[i].GameObject, gameTime);
     }
 };
 
 TransformComponent.Draw = function (context, gameTime) {
     if (!this.Enabled) return;
 
-    for (var i = 0; i < this.Children.length; i++)
+    for (var i = 0; this.Children && i < this.Children.length; i++)
         if (this.Children[i].GameObject && this.Children[i].GameObject.Draw)
             this.Children[i].GameObject.Draw.call(this.Children[i].GameObject, context, gameTime);
 };
 
 TransformComponent.OnDestroy = function () {
-    for (var i = 0; i < this.Children.length; i++)
+    for (var i = 0; this.Children && i < this.Children.length; i++)
         if (this.Children[i].GameObject)
             this.Children[i].GameObject.Destroy();
 };
