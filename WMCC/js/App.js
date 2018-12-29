@@ -5,6 +5,7 @@
     Width: undefined,
     Height: undefined,
     Time: { Start: 0, LastTime: 0, DeltaTime: 0, TotalTime: 0 },
+    Debug: true,
 
     StartApp: function (scene)
     {

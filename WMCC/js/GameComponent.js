@@ -12,6 +12,7 @@ var GameComponent = function (name, type)
     instance.AddComponent = function (component) { return instance.GameObject.AddComponent(component); };
     instance.RemoveComponent = function (component) { return instance.GameObject.RemoveComponent(component); };
     instance.GetComponentInChildren = function (type) { return instance.GameObject.GetComponentInChildren(type); };
+    instance.Transform = function () { return instance.GameObject.Transform; };
 
     instance.ScheduleDestroy = false;
     instance.WasAwake = false;
