@@ -99,6 +99,7 @@
     <Content Include="js\CenterScreenComponent.js" />
     <Content Include="js\CircleComponent.js" />
     <Content Include="js\CornerTimeComponent.js" />
+    <Content Include="js\ServerDemo.js" />
     <Content Include="js\DoNothing.js" />
     <Content Include="js\GameComponent.js" />
     <Content Include="js\GameObject.js" />

@@ -6,6 +6,8 @@
     Height: undefined,
     Time: { Start: 0, LastTime: 0, DeltaTime: 0, TotalTime: 0 },
     Debug: true,
+    Server: new ServerDemo(),
+    //Server: new ServerWMC(),
 
     StartApp: function (scene)
     {

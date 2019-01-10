@@ -7,14 +7,14 @@ var ConnectingScene = function () {
 
     var i = 0;
     var commands = ["IPAddress: 192.168.254.194", "Port: 9080", "WMCC^EREFRESH|GetServerVersion<Client Quit>"];
-    ServerWMC.Send(commands[i], OnReceiveResponse);
-    ServerWMC.OnError = OnError;
-    ServerWMC.OnClose = OnClose;
+    App.Server.Send(commands[i], OnReceiveResponse);
+    App.Server.OnError = OnError;
+    App.Server.OnClose = OnClose;
 
     function OnReceiveResponse(e) {
         if (i < commands.length - 1) {
             i++;
-            ServerWMC.Send(commands[i], OnReceiveResponse);
+            App.Server.Send(commands[i], OnReceiveResponse);
             return;
         }
         loadingCircle.Enabled = false;

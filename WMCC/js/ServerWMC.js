@@ -1,37 +1,38 @@
-﻿var ServerWMC =
+﻿var ServerWMC = function()
 {
-    /** @type {WebSocket} **/ Connection: undefined,
-    /** @type {string} **/ Host: "localhost",
-    /** @type {int} **/ Port: "9081",
-    Queue: new Queue(),
-    AwaitingMessage: false,
+    var instance = {};
 
-    /** @returns {WebSocket} **/
-    GetConnection: function () {
-        if (ServerWMC.Connection === undefined) {
-            ServerWMC.Connection = new WebSocket('ws://' + ServerWMC.Host + ':' + ServerWMC.Port);
-            ServerWMC.AwaitingMessage = true;
-            ServerWMC.Connection.onmessage = ServerWMC.OnReceive;
-            ServerWMC.Connection.onerror = function (e) { ServerWMC.OnError(e); };
-            ServerWMC.Connection.onclose = function (e) { ServerWMC.OnClose(e); };
-            return ServerWMC.Connection;
+    instance.Connection = undefined;
+    instance.Host = "localhost";
+    instance.Port = "9081";
+    instance.Queue = new Queue();
+    instance.AwaitingMessage = false;
+
+    instance.GetConnection = function () {
+        if (instance.Connection === undefined) {
+            instance.Connection = new WebSocket('ws://' + instance.Host + ':' + instance.Port);
+            instance.AwaitingMessage = true;
+            instance.Connection.onmessage = instance.OnReceive;
+            instance.Connection.onerror = function (e) { instance.OnError(e); };
+            instance.Connection.onclose = function (e) { instance.OnClose(e); };
+            return instance.Connection;
         }
         else
-            return ServerWMC.Connection;
-    },
+            return instance.Connection;
+    };
 
-    Send: function (data, callback) {
-        var connection = ServerWMC.GetConnection();
+    instance.Send = function (data, callback) {
+        var connection = instance.GetConnection();
 
-        if (ServerWMC.AwaitingMessage) {
-            ServerWMC.Queue.Enqueue([data, callback]);
+        if (instance.AwaitingMessage) {
+            instance.Queue.Enqueue([data, callback]);
             return;
         }
 
         if (connection.readyState === connection.OPEN) {
             this.AwaitingMessage = true;
             connection.send(data);
-            connection.onmessage = function (e) { ServerWMC.OnReceive(e); if (callback) callback(e); };
+            connection.onmessage = function (e) { instance.OnReceive(e); if (callback) callback(e); };
         }
         else {
             var previousOnOpen = function () { };
@@ -40,23 +41,25 @@
             connection.onopen = function () {
                 previousOnOpen();
                 this.AwaitingMessage = true;
-                connection.onmessage = function (e) { ServerWMC.OnReceive(e); if (callback) callback(e); };
+                connection.onmessage = function (e) { instance.OnReceive(e); if (callback) callback(e); };
                 connection.send(data);
             };
         }
-    },
+    };
 
-    OnReceive: function (e) {
-        if (ServerWMC.AwaitingMessage) {
-            ServerWMC.AwaitingMessage = false;
-            if (ServerWMC.Queue.Count() > 0) {
-                var item = ServerWMC.Queue.Dequeue();
-                ServerWMC.Send(item[0], item[1]);
+    instance.OnReceive = function (e) {
+        if (instance.AwaitingMessage) {
+            instance.AwaitingMessage = false;
+            if (instance.Queue.Count() > 0) {
+                var item = instance.Queue.Dequeue();
+                instance.Send(item[0], item[1]);
             }
         }
         console.log(e.data);
-    },
+    };
 
-    OnError: function (e) { },
-    OnClose: function (e) { }
+    instance.OnError = function (e) { };
+    instance.OnClose = function (e) { };
+
+    return instance;
 };
