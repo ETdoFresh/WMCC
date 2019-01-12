@@ -6,6 +6,7 @@
 
     var video = document.getElementsByTagName("video")[0];
     if (!video) video = document.createElement("video");
+    instance.Video = video;
 
     for (var i = 0; i < videos.length; i++)
     {
@@ -15,7 +16,10 @@
         video.appendChild(source);
     }
 
-    instance.Video = video;
+    instance.OnDestroy = function () {
+        instance.Video.pause();
+        instance.Video.remove();
+    };
 
     return instance;
 };

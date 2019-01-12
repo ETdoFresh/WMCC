@@ -12,6 +12,8 @@
     var play = function () { return c.Video.play(); };
     play().then().catch();
     Input.AddKeyDownListener(KeyCode.Enter, play);
-    instance.OnDestroy = function () { Input.RemoveKeyDownListener(KeyCode.Enter, play); };
+    instance.OnDestroy = function () {
+        Input.RemoveKeyDownListener(KeyCode.Enter, play);
+    };
     return instance;
 };
