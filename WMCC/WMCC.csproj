@@ -99,6 +99,11 @@
     <Content Include="js\CenterScreenComponent.js" />
     <Content Include="js\CircleComponent.js" />
     <Content Include="js\CornerTimeComponent.js" />
+    <Content Include="js\MenuTemplate.js" />
+    <Content Include="js\RecordedTVItemInfo.js" />
+    <Content Include="js\RecordedTVItemMenu.js" />
+    <Content Include="js\RecordedTVMenuPrefab.js" />
+    <Content Include="js\RecordedTVSortMenu.js" />
     <Content Include="js\ServerDemo.js" />
     <Content Include="js\DoNothing.js" />
     <Content Include="js\GameComponent.js" />
