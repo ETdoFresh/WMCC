@@ -154,6 +154,7 @@
     <Content Include="recordedTV.png" />
     <Content Include="search.png" />
     <Content Include="selection.png" />
+    <Content Include="SeperatorBackground.png" />
     <Content Include="unknown.png" />
     <Content Include="Web.config" />
   </ItemGroup>

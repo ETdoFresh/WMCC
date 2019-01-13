@@ -2,5 +2,6 @@
     return new GameObject("Recorded TV Menu", [
         new RecordedTVSortMenu(),
         new RecordedTVItemMenu(),
-        new RecordedTVItemInfo()]);
+        new RecordedTVItemInfo()
+    ]);
 };

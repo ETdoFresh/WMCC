@@ -1,17 +1,18 @@
-﻿var MainMenuItemBar = function () {
+﻿var MainMenuItemBar = function (selectedItem, title, children) {
+    selectedItem = selectedItem ? selectedItem : 0;
+    title = title ? title : "Not Specified";
+    children = children ? children : [];
+
     var instance = new GameObject("MainMenuItemBar");
+    instance.Transform.AddChild(new TextObject(title, { x: 0.1525, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
 
-    instance.Transform.AddChild(new TextObject("TV", { x: 0.1525, y: 0.525 }, "lighter 48px Eras ITC, Malgun Gothic, Arial", "white"));
-
-    var mainMenuItems = arguments;
     var items = [];
     var i;
-    for (i = 0; i < mainMenuItems.length - 1; i++) {
-        var item = instance.Transform.AddChild(mainMenuItems[i + 1]);
+    for (i = 0; i < children.length; i++) {
+        var item = instance.Transform.AddChild(children[i]);
         items.push(item);
     }
 
-    var selectedItem = 0;
     function UpdateBar() {
         for (i = 0; i < items.length; i++) {
             var item = items[i];
@@ -46,11 +47,13 @@
 
     instance.SelectPrevious = function () {
         selectedItem = Math.max(selectedItem - 1, 0);
+        MainMenuItem.LastSelected = selectedItem;
         UpdateBar();
     };
 
     instance.SelectNext = function () {
         selectedItem = Math.min(selectedItem + 1, items.length - 1);
+        MainMenuItem.LastSelected = selectedItem;
         UpdateBar();
     };
 

@@ -12,13 +12,15 @@
 
     var bars = [];
 
-    bars.push(instance.Transform.AddChild(new MainMenuItemBar("TV"
-        , new MainMenuItem("recorded TV", "recordedTV.png", RecordedTVScene)
-        , new MainMenuItem("guide", "guide.png", GuideScene)
-        , new MainMenuItem("live TV", "liveTV.png", TVScene)
-        , new MainMenuItem("search", "search.png", SearchScene)
-        , new MainMenuItem("Restart", "unknown.png", ConnectingScene)
-    )).GameObject);
+    bars.push(instance.Transform.AddChild(
+        new MainMenuItemBar(MainMenuItem.LastSelected, "TV", [
+            new MainMenuItem("recorded TV", "recordedTV.png", RecordedTVScene),
+            new MainMenuItem("guide", "guide.png", GuideScene),
+            new MainMenuItem("live TV", "liveTV.png", TVScene),
+            new MainMenuItem("search", "search.png", SearchScene),
+            new MainMenuItem("Restart", "unknown.png", ConnectingScene)
+        ])).GameObject
+    );
 
     //bars.push(instance.AddChild(new MainMenuItemBar("Task"
     //    , new MainMenuItem("recorded TV", "recordedTV.png", StartUpScene)
@@ -29,7 +31,7 @@
 
     instance.Transform.AddChild(new SelectionSquare());
 
-    var selectedBar = 0;
+    var selectedBar = MainMenuItemBar.LastSelected ? MainMenuItemBar.LastSelected : 0;
     var onLeftArrow = function (e) { bars[selectedBar].SelectPrevious(); };
     var onRightArrow = function (e) { bars[selectedBar].SelectNext(); };
     var onEnter = function (e) { bars[selectedBar].Select(); };
@@ -46,3 +48,5 @@
 
     return instance;
 };
+
+MainMenuItemBar.LastSelected = null;

@@ -20,12 +20,14 @@
     var onLeftArrow = function (e) { activeMenu.OnLeft(); };
     var onRightArrow = function (e) { activeMenu.OnRight(); };
     var onEnter = function (e) { activeMenu.OnEnter(); };
+    var onBackspace = function (e) { App.ChangeScene(MainMenuScene); };
 
     Input.AddKeyDownListener(KeyCode.UpArrow, onUpArrow);
     Input.AddKeyDownListener(KeyCode.DownArrow, onDownArrow);
     Input.AddKeyDownListener(KeyCode.LeftArrow, onLeftArrow);
     Input.AddKeyDownListener(KeyCode.RightArrow, onRightArrow);
     Input.AddKeyDownListener(KeyCode.Enter, onEnter);
+    Input.AddKeyDownListener(KeyCode.Backspace, onBackspace);
 
     instance.OnDestroy = function () {
         Input.RemoveKeyDownListener(KeyCode.UpArrow, onUpArrow);
@@ -33,6 +35,7 @@
         Input.RemoveKeyDownListener(KeyCode.LeftArrow, onLeftArrow);
         Input.RemoveKeyDownListener(KeyCode.RightArrow, onRightArrow);
         Input.RemoveKeyDownListener(KeyCode.Enter, onEnter);
+        Input.RemoveKeyDownListener(KeyCode.Backspace, onBackspace);
     };
 
     return instance;
