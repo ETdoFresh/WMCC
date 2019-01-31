@@ -10,21 +10,22 @@ public class CrossFadeScene : MonoBehaviour
     public Coroutine coroutine;
     public float alpha = 1;
     public float duration = 1;
+    private bool stopUpdating = false;
 
     public void Awake()
     {
         if (instance)
-        {
-            instance.nextSceneName = nextSceneName;
-            Destroy(gameObject);
-            return;
-        }
+            instance.stopUpdating = true;
+
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
+        if (stopUpdating)
+            return;
+
         if (Input.GetButtonDown("Jump"))
             FadeToScene(nextSceneName);
     }
@@ -50,6 +51,7 @@ public class CrossFadeScene : MonoBehaviour
 
         texture = null;
         coroutine = null;
+        Destroy(gameObject);
     }
 
     private void OnGUI()
