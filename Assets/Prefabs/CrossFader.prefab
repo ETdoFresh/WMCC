@@ -43,5 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 967c46b4307c4b3458e7b4088e1aff50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneBuildIndex: 1
   texture: {fileID: 0}
   alpha: 1
+  duration: 1

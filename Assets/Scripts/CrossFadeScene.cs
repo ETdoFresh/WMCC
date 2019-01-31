@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class CrossFadeScene : MonoBehaviour
 {
     public static CrossFadeScene instance;
-    public string nextSceneName;
+    public int sceneBuildIndex;
     public Texture texture;
     public Coroutine coroutine;
     public float alpha = 1;
@@ -27,15 +27,20 @@ public class CrossFadeScene : MonoBehaviour
             return;
 
         if (Input.GetButtonDown("Jump"))
-            FadeToScene(nextSceneName);
+            FadeToScene();
     }
 
-    public void FadeToScene(string sceneName)
+    public void FadeToScene()
     {
-        coroutine = StartCoroutine(FadeOut(sceneName));
+        coroutine = StartCoroutine(FadeOut());
     }
 
-    private IEnumerator FadeOut(string sceneName)
+    public void FadeToSceneAfterDelay(float time)
+    {
+        Invoke("FadeToScene", time);
+    }
+
+    private IEnumerator FadeOut()
     {
         yield return new WaitForEndOfFrame();
 
@@ -44,7 +49,7 @@ public class CrossFadeScene : MonoBehaviour
         texture2D.Apply();
         texture = texture2D;
 
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneBuildIndex);
 
         for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
             yield return null;
