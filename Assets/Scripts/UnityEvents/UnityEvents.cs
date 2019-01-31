@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [Serializable] public class UnityEventObject : UnityEvent<UnityEngine.Object> { }
 [Serializable] public class UnityEventGameObject : UnityEvent<GameObject> { }
 [Serializable] public class UnityEventTransform : UnityEvent<Transform> { }
+[Serializable] public class UnityEventString : UnityEvent<string> { }
 
 public static class UnityEventExtensions
 {

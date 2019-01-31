@@ -13,4 +13,10 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
         instance = this as T;
     }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
+    }
 }
