@@ -1,0 +1,1 @@
+start %AppData%\..\Local\Unity\Editor
