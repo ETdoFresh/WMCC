@@ -14,13 +14,19 @@ public class SimulatedConnection : Connection
 
     public override IEnumerator Connect()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         m_Messages.Enqueue(Encoding.UTF8.GetBytes("Display Message of the day (MOTD)!"));
     }
 
     public override void Send(byte[] buffer)
     {
         var message = Encoding.UTF8.GetString(buffer);
+
+        // Echo
+        if (message.StartsWith("IPAddress:")) m_Messages.Enqueue(buffer);
+        if (message.StartsWith("Port:")) m_Messages.Enqueue(buffer);
+
+        // Unique Responses
         if (message == "WMCC^ETdoFresh|GetServerVersion<Client Quit>")
             m_Messages.Enqueue(Encoding.UTF8.GetBytes("1.0.0.63, build: 1255<EOL>1255<EOL>smb://192.168.254.194/Users/Public/Recorded TV<EOL>14:FE:B5:B9:41:4E<EOL><EOF>"));
     }
