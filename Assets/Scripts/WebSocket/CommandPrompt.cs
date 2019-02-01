@@ -42,6 +42,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
 
     public static void Write(string format = "", params object[] args)
     {
+        if (!instance) return;
         instance.text += string.Format(format, args);
         instance.textUI.text = instance.text;
         Debug.LogFormat(format, args);
@@ -49,6 +50,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
 
     public static void WriteLine(string format = "", params object[] args)
     {
+        if (!instance) return;
         instance.text += string.Format(format, args) + "\n";
         instance.textUI.text = instance.text;
         Debug.LogFormat(format, args);
@@ -56,6 +58,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
 
     public static void WriteErrorLine(string format = "", params object[] args)
     {
+        if (!instance) return;
         instance.text += string.Format(format, args) + "\n";
         instance.textUI.text = instance.text;
         Debug.LogErrorFormat(format, args);
