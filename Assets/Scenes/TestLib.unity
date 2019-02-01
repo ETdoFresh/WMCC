@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 434089097}
   - component: {fileID: 434089096}
   m_Layer: 0
-  m_Name: EchoTest
+  m_Name: Client
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0774b9ec4f3ef64e9c3a41fd636cc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverType: 2
+  serverType: 0
   server: 127.0.0.1
   port: 9081
   onEnable:
