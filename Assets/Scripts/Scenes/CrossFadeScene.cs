@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CrossFadeScene : MonoBehaviour
 {
@@ -32,7 +31,17 @@ public class CrossFadeScene : MonoBehaviour
 
     public void FadeToScene()
     {
-        coroutine = StartCoroutine(FadeOut());
+        coroutine = StartCoroutine(FadeOut(sceneBuildIndex));
+    }
+
+    public void FadeToScene(int sceneBuildIndex)
+    {
+        coroutine = StartCoroutine(FadeOut(sceneBuildIndex));
+    }
+
+    public void FadeToScene(string sceneName)
+    {
+        coroutine = StartCoroutine(FadeOut(sceneName));
     }
 
     public void FadeToSceneAfterDelay(float time)
@@ -40,23 +49,44 @@ public class CrossFadeScene : MonoBehaviour
         Invoke("FadeToScene", time);
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator FadeOut(int sceneBuildIndex)
     {
         yield return new WaitForEndOfFrame();
+        CaptureSceenShot();
+        SceneManager.LoadScene(sceneBuildIndex);
 
+        // Fade Screenshot Out
+        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
+            yield return null;
+
+        // Clean up
+        texture = null;
+        coroutine = null;
+        Destroy(gameObject);
+    }
+
+    private IEnumerator FadeOut(string sceneName)
+    {
+        yield return new WaitForEndOfFrame();
+        CaptureSceenShot();
+        SceneManager.LoadScene(sceneName);
+
+        // Fade Screenshot Out
+        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
+            yield return null;
+
+        // Clean up
+        texture = null;
+        coroutine = null;
+        Destroy(gameObject);
+    }
+
+    private void CaptureSceenShot()
+    {
         var texture2D = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
         texture2D.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
         texture2D.Apply();
         texture = texture2D;
-
-        SceneManager.LoadScene(sceneBuildIndex);
-
-        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
-            yield return null;
-
-        texture = null;
-        coroutine = null;
-        Destroy(gameObject);
     }
 
     private void OnGUI()

@@ -8,13 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: 5c4c7cf9a3a1be349879e93902a362fe
-  - enabled: 0
-    path: Assets/Scenes/Connecting.unity
-    guid: b14494da3b00a884592f0f44110fc918
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 66490d82224127f4395095c31927ab1e
   - enabled: 1
     path: Assets/Scenes/VideoPlayer.unity
     guid: 9596821443cdac0478d0b590a2790c5c
+  - enabled: 1
+    path: Assets/Scenes/Guide.unity
+    guid: f4e3657356b62a240bc3e635bb2a533b
+  - enabled: 1
+    path: Assets/Scenes/RecordedTV.unity
+    guid: c8795b761a961c5459fea5a463811c44
+  - enabled: 1
+    path: Assets/Scenes/Search.unity
+    guid: eab84de9d1feb0540824ba5393c2cd6a
   m_configObjects: {}

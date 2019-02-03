@@ -56,7 +56,7 @@ public class Client : Singleton<Client>
 
     private IEnumerator GoToNextScene()
     {
-        FindObjectOfType<CrossFadeScene>().FadeToScene();
+        SceneManager.FadeToScene("MainMenu");
         yield return null;
     }
 

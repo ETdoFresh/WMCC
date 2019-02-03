@@ -10,6 +10,8 @@ public class SingletonSO<T> : ScriptableObject, ISingletonSO where T : Singleton
         instance = this as T;
     }
 
+    public virtual void Update() { }
+
     private void OnDestroy()
     {
         if (instance == this)
@@ -17,4 +19,4 @@ public class SingletonSO<T> : ScriptableObject, ISingletonSO where T : Singleton
     }
 }
 
-public interface ISingletonSO { void Initialize(); }
+public interface ISingletonSO { void Initialize(); void Update(); }
