@@ -18,3 +18,4 @@ MonoBehaviour:
   serverVersion: '1.0.0.63, build: 1255'
   tcpIP: 192.168.254.194
   tcpPort: 9080
+  crossFadeTime: 0.2

@@ -3,45 +3,28 @@ using UnityEngine;
 
 public class CrossFadeScene : MonoBehaviour
 {
-    public static CrossFadeScene instance;
     public int sceneBuildIndex;
     public Texture texture;
-    public Coroutine coroutine;
     public float alpha = 1;
-    public float duration = 1;
-    private bool stopUpdating = false;
 
     public void Awake()
     {
-        if (instance)
-            instance.stopUpdating = true;
-
-        instance = this;
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
-    {
-        if (stopUpdating)
-            return;
-
-        if (Input.GetButtonDown("Jump"))
-            FadeToScene();
     }
 
     public void FadeToScene()
     {
-        coroutine = StartCoroutine(FadeOut(sceneBuildIndex));
+        StartCoroutine(FadeOut(sceneBuildIndex));
     }
 
     public void FadeToScene(int sceneBuildIndex)
     {
-        coroutine = StartCoroutine(FadeOut(sceneBuildIndex));
+        StartCoroutine(FadeOut(sceneBuildIndex));
     }
 
     public void FadeToScene(string sceneName)
     {
-        coroutine = StartCoroutine(FadeOut(sceneName));
+        StartCoroutine(FadeOut(sceneName));
     }
 
     public void FadeToSceneAfterDelay(float time)
@@ -56,12 +39,11 @@ public class CrossFadeScene : MonoBehaviour
         SceneManager.LoadScene(sceneBuildIndex);
 
         // Fade Screenshot Out
-        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
+        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / Settings.CrossFadeTime)
             yield return null;
 
         // Clean up
         texture = null;
-        coroutine = null;
         Destroy(gameObject);
     }
 
@@ -72,12 +54,11 @@ public class CrossFadeScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
 
         // Fade Screenshot Out
-        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / duration)
+        for (alpha = 1.0f; alpha > 0.0f; alpha -= Time.deltaTime / Settings.CrossFadeTime)
             yield return null;
 
         // Clean up
         texture = null;
-        coroutine = null;
         Destroy(gameObject);
     }
 
