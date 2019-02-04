@@ -281,10 +281,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4335573310446712329, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
+    - target: {fileID: 7820640949886729286, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
       propertyPath: m_Name
-      value: MainMenu
+      value: BlueBackground
       objectReference: {fileID: 0}
     - target: {fileID: 4335573310446712325, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
@@ -391,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4335573310446712329, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
+        type: 3}
+      propertyPath: m_Name
+      value: RecordedTVCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 4335573310446712326, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
       propertyPath: m_Camera
@@ -420,11 +425,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7820640949886729286, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
-        type: 3}
-      propertyPath: m_Name
-      value: BlueBackground
       objectReference: {fileID: 0}
     - target: {fileID: 4717852418432660371, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}

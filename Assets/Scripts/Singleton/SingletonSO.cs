@@ -2,7 +2,20 @@
 
 public class SingletonSO<T> : ScriptableObject, ISingletonSO where T : SingletonSO<T>
 {
-    public static T instance;
+    protected static T Instance
+    {
+        get
+        {
+#if UNITY_EDITOR
+            if (instance) return instance;
+            else return CreateInstance<T>();
+#else
+            return instance;
+#endif
+        }
+    }
+
+    private static T instance;
 
     public virtual void Initialize()
     {

@@ -937,7 +937,7 @@ GameObject:
   - component: {fileID: 4913537364409400230}
   - component: {fileID: 9182751902577388474}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TVText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,10 +957,10 @@ RectTransform:
   m_Father: {fileID: 5291141997428589733}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -360.15997, y: 14}
-  m_SizeDelta: {x: 143.2, y: 118.3}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 25, y: 0}
+  m_SizeDelta: {x: -50, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4913537364409400230
 CanvasRenderer:
@@ -1030,6 +1030,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 702163476653487494, guid: 923ebd7032f65e744beb11f408f7e374,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 702163476653487493, guid: 923ebd7032f65e744beb11f408f7e374,
         type: 3}
       propertyPath: m_RootOrder
@@ -1055,8 +1060,25 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 2118975693451803837}
+    - target: {fileID: 3007951006158877727, guid: 923ebd7032f65e744beb11f408f7e374,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 2118975693451803834}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 923ebd7032f65e744beb11f408f7e374, type: 3}
+--- !u!114 &2118975693451803834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 702163476653487492, guid: 923ebd7032f65e744beb11f408f7e374,
+    type: 3}
+  m_PrefabInstance: {fileID: 1501538007198370110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2118975693451803837 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 702163476653487491, guid: 923ebd7032f65e744beb11f408f7e374,
@@ -1076,10 +1098,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4335573310446712329, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
+    - target: {fileID: 7820640949886729286, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
       propertyPath: m_Name
-      value: MainMenu
+      value: BlueBackground
       objectReference: {fileID: 0}
     - target: {fileID: 4335573310446712325, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
@@ -1186,6 +1208,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4335573310446712329, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
+        type: 3}
+      propertyPath: m_Name
+      value: MainMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4335573310446712326, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
       propertyPath: m_Camera
@@ -1215,11 +1242,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7820640949886729286, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
-        type: 3}
-      propertyPath: m_Name
-      value: BlueBackground
       objectReference: {fileID: 0}
     - target: {fileID: 4717852418432660371, guid: 33bc2c8afd2930a4ab4e39dd1b030c88,
         type: 3}
