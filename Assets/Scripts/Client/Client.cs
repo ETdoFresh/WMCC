@@ -14,6 +14,7 @@ public class Client : Singleton<Client>
     public static UnityEventString OnReceived { get => instance.onReceived; }
     public static UnityEventString OnError { get => instance.onError; }
 
+    public string nextSceneName = "Introduction";
     public Connection connection;
     public UnityEvent onEnable;
     public UnityEvent onDisable;
@@ -56,7 +57,7 @@ public class Client : Singleton<Client>
 
     private IEnumerator GoToNextScene()
     {
-        SceneManager.FadeToScene("MainMenu");
+        SceneManager.FadeToScene(nextSceneName);
         yield return null;
     }
 
