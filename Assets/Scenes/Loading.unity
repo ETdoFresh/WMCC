@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0774b9ec4f3ef64e9c3a41fd636cc88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Introduction
   onEnable:
     m_PersistentCalls:
       m_Calls: []
@@ -173,6 +172,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEventString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  onReceivedServerInfo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: a6f4fb608a2c14742a44a9c3480b9ac7, type: 2}
+        m_MethodName: _FadeToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Introduction
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!4 &434089097
 Transform:
   m_ObjectHideFlags: 0

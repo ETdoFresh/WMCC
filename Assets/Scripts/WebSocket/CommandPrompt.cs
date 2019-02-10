@@ -5,62 +5,51 @@ using UnityEngine.UI;
 public class CommandPrompt : Singleton<CommandPrompt>
 {
     public Text textUI;
-    public float blinkRate = 0.2f;
+    public InputField inputField;
     [Multiline] public string text;
 
-    private Coroutine flashingCursor;
-
-    void OnEnable()
+    private void OnValidate()
     {
-        flashingCursor = StartCoroutine(FlashCursor());
+        textUI = textUI ?? GetComponent<Text>();
+        inputField = inputField ?? FindObjectOfType<InputField>();
     }
 
-    void Start()
+    private void Start()
     {
         text = textUI.text;
     }
 
-    void OnDisable()
+    private void Update()
     {
-        StopCoroutine(flashingCursor);
-        flashingCursor = null;
-    }
-
-    IEnumerator FlashCursor()
-    {
-        if (!textUI) yield break;
-
-        bool showUnderscore = false;
-        while (enabled)
+        if (!inputField.isFocused)
         {
-            yield return new WaitForSeconds(blinkRate);
-            showUnderscore = !showUnderscore;
-            textUI.text = text;
-            textUI.text += showUnderscore ? "_" : "";
+            inputField.Select();
+            inputField.ActivateInputField();
         }
     }
 
-    public static void Write(string format = "", params object[] args)
+    public static void Write(string format = "", params object[] args) => instance?._Write(format, args);
+    public void _Write(string format = "", params object[] args)
     {
-        if (!instance) return;
-        instance.text += string.Format(format, args);
-        instance.textUI.text = instance.text;
+        text += string.Format(format, args);
+        textUI.text = text;
         Debug.LogFormat(format, args);
     }
 
-    public static void WriteLine(string format = "", params object[] args)
+    public static void WriteLine(string format = "", params object[] args) => instance?._WriteLine(format, args);
+    public void _WriteLine(string message) => _WriteLine(message, new object[0]);
+    public void _WriteLine(string format = "", params object[] args)
     {
-        if (!instance) return;
-        instance.text += string.Format(format, args) + "\n";
-        instance.textUI.text = instance.text;
+        text += string.Format(format, args) + "\n";
+        textUI.text = text;
         Debug.LogFormat(format, args);
     }
 
-    public static void WriteErrorLine(string format = "", params object[] args)
+    public static void WriteErrorLine(string format = "", params object[] args) => instance?._WriteErrorLine(format, args);
+    public void _WriteErrorLine(string format = "", params object[] args)
     {
-        if (!instance) return;
-        instance.text += string.Format(format, args) + "\n";
-        instance.textUI.text = instance.text;
+        text += string.Format(format, args) + "\n";
+        textUI.text = text;
         Debug.LogErrorFormat(format, args);
     }
 }

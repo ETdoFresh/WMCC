@@ -14,7 +14,6 @@ public class Client : Singleton<Client>
     public static UnityEventString OnReceived { get => instance.onReceived; }
     public static UnityEventString OnError { get => instance.onError; }
 
-    public string nextSceneName = "Introduction";
     public Connection connection;
     public UnityEvent onEnable;
     public UnityEvent onDisable;
@@ -23,6 +22,7 @@ public class Client : Singleton<Client>
     public UnityEventString onSend;
     public UnityEventString onReceived;
     public UnityEventString onError;
+    public UnityEvent onReceivedServerInfo;
     public Coroutine coroutine;
     private string reply;
 
@@ -48,16 +48,22 @@ public class Client : Singleton<Client>
             GetMOTD(),
             SetTcpServer(),
             GetServerVersion(),
-            GoToNextScene(),
+            PrcoessRepliesUntilDisconnect(),
         };
 
         foreach(var item in sequence)
             yield return StartCoroutine(item);
     }
 
-    private IEnumerator GoToNextScene()
+    private IEnumerator PrcoessRepliesUntilDisconnect()
     {
-        SceneManager.FadeToScene(nextSceneName);
+        while (true)
+            yield return StartCoroutine(AwaitReply());
+    }
+
+    private IEnumerator SendReceivedServerInfoEvent()
+    {
+        onReceivedServerInfo.Invoke();
         yield return null;
     }
 
@@ -88,6 +94,7 @@ public class Client : Singleton<Client>
         Send("WMCC^ETdoFresh|GetServerVersion<Client Quit>");
         yield return StartCoroutine(AwaitReply());
         Settings.ServerVersion = reply.Split(new[] { "<EOL>" }, StringSplitOptions.None)[0];
+        onReceivedServerInfo.Invoke();
     }
 
     private IEnumerator GetMOTD()
@@ -126,7 +133,7 @@ public class Client : Singleton<Client>
         CommandPrompt.WriteLine("Server: {0}", message);
     }
 
-    private void Send(string message)
+    public void Send(string message)
     {
         CommandPrompt.WriteLine("Client: {0}", message);
         connection.SendString(message);
