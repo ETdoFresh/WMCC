@@ -10,7 +10,7 @@ using UnityEngine.Events;
 
 public static class UnityEventExtensions
 {
-    public static void AddEditorListener(this UnityEvent unityEvent, UnityAction call)
+    public static void AddEditorListener(this UnityEngine.Events.UnityEvent unityEvent, UnityAction call)
     {
 #if UNITY_EDITOR
         UnityEditor.Events.UnityEventTools.AddPersistentListener(unityEvent, call);
@@ -19,7 +19,7 @@ public static class UnityEventExtensions
 #endif
     }
 
-    public static void RemoveEditorListener(this UnityEvent unityEvent, UnityAction call)
+    public static void RemoveEditorListener(this UnityEngine.Events.UnityEvent unityEvent, UnityAction call)
     {
 #if UNITY_EDITOR
         UnityEditor.Events.UnityEventTools.RemovePersistentListener(unityEvent, call);

@@ -1,0 +1,16 @@
+[diff]
+  tool = vsdiffmerge
+[difftool]
+  prompt = false
+[difftool "vsdiffmerge"]
+  cmd = '"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/vsdiffmerge.exe"' "$LOCAL" "$REMOTE" //t
+  keepbackup = false
+  trustexitcode = true
+[merge]
+  tool = vsdiffmerge
+[mergetool]
+  prompt = false
+[mergetool "vsdiffmerge"]
+  cmd = '"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/Common7/IDE/vsdiffmerge.exe"' "$REMOTE" "$LOCAL" "$BASE" "$MERGED" //m
+  keepbackup = false
+  trustexitcode = true
