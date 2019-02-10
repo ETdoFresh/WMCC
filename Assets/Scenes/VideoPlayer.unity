@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 270075480}
   - component: {fileID: 270075479}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ButtonPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1533,7 +1533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 816343354}
   videoPlayer: {fileID: 418978022}
-  skipAmount: 30
 --- !u!1 &864903999
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1200720069}
   videoPlayer: {fileID: 418978022}
-  skipAmount: 30
 --- !u!1 &1208033638
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,5 +3607,58 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8475366361492967346, guid: e200f50111c7dd4469a5a1beba36b8a1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 109907083, guid: e200f50111c7dd4469a5a1beba36b8a1, type: 3}
+      propertyPath: m_Name
+      value: Video
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e200f50111c7dd4469a5a1beba36b8a1, type: 3}
+--- !u!1 &8944176601879832492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8944176603158146701, guid: e200f50111c7dd4469a5a1beba36b8a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8944176601879832491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8944176601879832493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 109907083, guid: e200f50111c7dd4469a5a1beba36b8a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 8944176601879832491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &8944176601879832494
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944176601879832492}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 2ab6957d888ee794db1519eb22e93aa6, type: 2}
+  - {fileID: 7400000, guid: c4f195db5b29e4f458e96613929811f9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &8944176601879832495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944176601879832493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08fdc736e889e96479ac0db6091224a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animation: {fileID: 8944176601879832494}
+  previousMousePosition: {x: 0, y: 0, z: 0}
+  hideButtonsAfter: 3
