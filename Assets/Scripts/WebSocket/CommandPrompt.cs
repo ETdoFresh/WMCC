@@ -24,7 +24,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
 
     private void Update()
     {
-        if (!inputField.isFocused)
+        if (inputField && !inputField.isFocused)
         {
             inputField.Select();
             inputField.ActivateInputField();
