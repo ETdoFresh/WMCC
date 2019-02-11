@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +6,10 @@ public class CommandPrompt : Singleton<CommandPrompt>
 {
     public Text textUI;
     public InputField inputField;
+    public int textBuffer = 8 * 1024;
     [Multiline] public string text;
+
+    public string Text { get => text.Substring(Math.Max(0, text.Length - textBuffer)); }
 
     private void OnValidate()
     {
@@ -32,7 +35,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
     public void _Write(string format = "", params object[] args)
     {
         text += string.Format(format, args);
-        textUI.text = text;
+        textUI.text = Text;
         Debug.LogFormat(format, args);
     }
 
@@ -41,7 +44,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
     public void _WriteLine(string format = "", params object[] args)
     {
         text += string.Format(format, args) + "\n";
-        textUI.text = text;
+        textUI.text = Text;
         Debug.LogFormat(format, args);
     }
 
@@ -49,7 +52,7 @@ public class CommandPrompt : Singleton<CommandPrompt>
     public void _WriteErrorLine(string format = "", params object[] args)
     {
         text += string.Format(format, args) + "\n";
-        textUI.text = text;
+        textUI.text = Text;
         Debug.LogErrorFormat(format, args);
     }
 }

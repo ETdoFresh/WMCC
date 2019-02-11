@@ -1,0 +1,36 @@
+WMCC^ETdoFresh|GetServerVersion<Client Quit>
+WMCC^ETdoFresh|GetChannels<Client Quit>
+WMCC^ETdoFresh|GetRecordings<Client Quit>
+WMCC^ETdoFresh|GetTimers<Client Quit>
+WMCC^ETdoFresh|GetSeriesTimers<Client Quit>
+WMCC^ETdoFresh|GetPlexLiveStreamInfo<Client Quit>
+
+        command = 'SetTimer|{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}'.format(
+                '-1', # => epg based timer
+                chID, # Channel ID
+                startTime, # Start date and time of listing
+                endTime,  # End date and time of listing
+                str(pvr_time_state.pvr_timer_state_new),
+                name, # name of listing
+                '0',  #XBMc Priotiry (not used)
+                '2', # pre padding in minutes
+                '3',  # post padding in minutes
+                'false',  # XBMC bIsRepeating (not used)
+                u.getEntryID(programID=programID),  # ScheduleEntry ID
+                'False',  # force prepad bool
+                'False'   # force postpad bool
+        )
+
+	command = 'CancelTimer|{0}'.format(
+                timerID
+        )
+
+	command = 'CancelSeriesTimer|{0}'.format(
+                seriesID
+        )
+
+	command = 'DeleteRecording|{0}'.format(
+                recordingID
+        )
+
+https://github.com/salphonso/wmc2plex.bundle/blob/master/Contents/Code/__init__.py
